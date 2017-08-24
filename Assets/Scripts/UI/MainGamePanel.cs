@@ -7,28 +7,35 @@ public class MainGamePanel : MonoBehaviour {
 	[SerializeField]
 	private GameObject[ ] panel;
 
-	// Use this for initialization
+    List<string> sceneNames = new List<string>( ) {
+        "game",
+        "title"
+    };
+  	// Use this for initialization
 	void Start( ) {
-		panel[ 0 ].SetActive( true );
+        
+        SceneController.GetActiveSceneNames( );
+
+        panel[ 0 ].SetActive( true );
 		panel[ 1 ].SetActive( false );
 		panel[ 2 ].SetActive( false );
 		panel[ 3 ].SetActive( false );
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update( ) {
 		
 	}
 
 	public void SetPanelState( int tabNo ) {
-
+        
 		switch( tabNo ) {
 		case 0:
 			panel[ 0 ].SetActive( false );
 			panel[ 1 ].SetActive( false );
 			panel[ 2 ].SetActive( false );
 			panel[ 3 ].SetActive( false );
-			SceneManager.LoadScene( "title" );
+			SceneController.MoveScenes( sceneNames );
 			break;
 		case 1:
 			panel[ 0 ].SetActive( false );
@@ -48,9 +55,10 @@ public class MainGamePanel : MonoBehaviour {
 			panel[ 2 ].SetActive( false );
 			panel[ 3 ].SetActive( true );
 			break;
-		case 4:
-			SceneManager.LoadScene( "title" );
-			break;
+        case 4:
+            SceneController.MoveScenes( sceneNames );
+            break;
+
 		}
 		
 	}

@@ -1,13 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PanelState : MonoBehaviour {
     [SerializeField]
     private GameObject[ ] panel;
-	// Use this for initialization
+
+    List<string> sceneNames = new List<string>( ) {
+        "game",
+        "title"
+    };
+ 	// Use this for initialization
 	void Start( ) {
+        SceneController.GetActiveSceneNames( );
 		panel[ 0 ].SetActive( true );
 		panel[ 1 ].SetActive( false );
 		panel[ 2 ].SetActive( false );
@@ -20,6 +27,7 @@ public class PanelState : MonoBehaviour {
 	}
 
     public void SetPanelState( int tabNo ) {
+      
         switch( tabNo ) {
             case 0:
                 Panel.panelName = Panel.PHASE.TITLE;
@@ -40,6 +48,7 @@ public class PanelState : MonoBehaviour {
     }
 
     void PanelStateChanger( ) {
+       
         switch( Panel.panelName ) {
             case Panel.PHASE.TITLE:
                 panel[ 0 ].SetActive( true );
@@ -66,8 +75,7 @@ public class PanelState : MonoBehaviour {
                 panel[ 3 ].SetActive( true );
                 break;
 			case Panel.PHASE.MAIN_GAME:
-			
-				SceneManager.LoadScene( "game" );
+                SceneController.MoveScenes( sceneNames );
 				break;
         }
     }
