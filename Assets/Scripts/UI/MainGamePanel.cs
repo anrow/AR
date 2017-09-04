@@ -10,10 +10,6 @@ public class MainGamePanel : MonoBehaviour {
   	// Use this for initialization
 	void Start( ) {
 		
-        panel[ 0 ].SetActive( true );
-		panel[ 1 ].SetActive( false );
-		panel[ 2 ].SetActive( false );
-		panel[ 3 ].SetActive( false );
 	}
 	
 	// Update is called once per frame
