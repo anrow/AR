@@ -17,7 +17,7 @@ public class webCamScript : MonoBehaviour {
 			GameObject cameraParent = new GameObject ("camParent");
 			cameraParent.transform.position = this.transform.position;
 			this.transform.parent = cameraParent.transform;
-			cameraParent.transform.Rotate (Vector3.right, 90);
+			cameraParent.transform.Rotate (Vector3.right, 180);
 		}
 
 		Input.gyro.enabled = true;
