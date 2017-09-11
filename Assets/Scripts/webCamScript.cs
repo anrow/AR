@@ -29,9 +29,6 @@ public class webCamScript : MonoBehaviour {
 		webCameraPlane.GetComponent<MeshRenderer>().material.mainTexture = webCameraTexture;
 		webCameraTexture.Play();
 
-
-
-
 	}
 
 	void OnButtonDown(){
