@@ -1,10 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemySpawner.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/webCamScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\webCamScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnemySpawner.cs" Line="24" Column="21" />
-      <File FileName="Assets\enemyCro.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/webCamScript.cs" Line="69" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
