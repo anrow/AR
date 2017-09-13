@@ -10,6 +10,8 @@ public class battleField : MonoBehaviour, IPointerEnterHandler {
 	public GameObject battlePlane;
 
 	public GameObject[] enemyBattle;
+
+	public GameObject testButton;
 	// Use this for initialization
 	void Start () {
 		enemyCroScr = FindObjectOfType<enemyCro> ();
@@ -22,12 +24,18 @@ public class battleField : MonoBehaviour, IPointerEnterHandler {
 			enemyCroScr.startBattle = false;
 			battlePlane.SetActive (true);
 
-			for (int i = 0; i < enemyBattle.Length; i++) {
+			/*for (int i = 0; i < enemyBattle.Length; i++) {
 				
 				Instantiate (enemyBattle[i], randomVector(), Quaternion.identity);
 
-			}
+			}*/
+
+			Instantiate (enemyBattle[0], new Vector3(0, 1, 5), Quaternion.identity);
+			Instantiate (enemyBattle[1], new Vector3(0, -1, 5), Quaternion.identity);
+			Instantiate (enemyBattle[2], new Vector3(1, 1, 5), Quaternion.identity);
 		}
+			
+		isEnemyExist ();
 	}
 
 	Vector3 randomVector(){
@@ -43,4 +51,16 @@ public class battleField : MonoBehaviour, IPointerEnterHandler {
 	{
 		Debug.Log ( ">>>" );
 	}
+
+	void isEnemyExist(){
+		if(GameObject.Find("enemy(Clone)") != null) {
+			Debug.Log("get Enemy");
+		} else {
+			Debug.Log("no Enemy");
+			testButton.SetActive (true);
+		}
+			
+	}
+
 }
+

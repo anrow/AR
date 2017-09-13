@@ -7,7 +7,8 @@ public class EnemySpawner : MonoBehaviour{
 
 	// Use this for initialization
 	void Start () {
-		Instantiate (enemy, randomVector( ), Quaternion.identity);
+		//Instantiate (enemy, randomVector( ), Quaternion.identity);
+		Instantiate (enemy, new Vector3(-1, -1, 5), Quaternion.identity);
 	}
 	
 	// Update is called once per frame
