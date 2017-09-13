@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class enemyCro : MonoBehaviour, IPointerClickHandler {
+public class enemyCro : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler {
 
+	public bool startBattle;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,7 +16,14 @@ public class enemyCro : MonoBehaviour, IPointerClickHandler {
 		
 	}
 
+	public void OnPointerEnter (PointerEventData eventData)
+	{
+		Debug.Log ( ">>>" );
+	}
+
 	public void OnPointerClick(PointerEventData eventData){
 		Debug.Log("!!!!");
+		startBattle = true;
+		Destroy (gameObject);
 	}
 }
