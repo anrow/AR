@@ -6,6 +6,7 @@ public static class Panel {
 
     [SerializeField]
     public enum TITLE_PHASE {
+		LOGO,
         TITLE,
         MAIN_MENU,
         OPTION,
@@ -18,10 +19,11 @@ public static class Panel {
 		PLAY_METHOD,
 		MAIN_GAME,
 		RESULT,
-		PHOTO
+		PHOTO,
+		PAUSE
 	}
 		
-    public static TITLE_PHASE titlePanel = TITLE_PHASE.TITLE;
+	public static TITLE_PHASE titlePanel = TITLE_PHASE.LOGO;
 
 	public static GAME_PHASE gamePanel = GAME_PHASE.PLAY_METHOD;
 

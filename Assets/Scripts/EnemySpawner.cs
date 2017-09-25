@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 public class EnemySpawner : MonoBehaviour{
-
+	[SerializeField]
 	public GameObject enemy;
 
 	// Use this for initialization
 	void Start () {
-		//Instantiate (enemy, randomVector( ), Quaternion.identity);
-		Instantiate (enemy, new Vector3(-1, -1, 5), Quaternion.identity);
+		//Instantiate (enemy, randomVector( ),Camera.main.transform.rotation);
+		//Instantiate (enemy, new Vector3(-1, -1, 5), Quaternion.identity);
+		Instantiate (enemy, this.transform.localPosition, Quaternion.identity);
 	}
 	
 	// Update is called once per frame

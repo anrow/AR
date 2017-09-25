@@ -9,7 +9,7 @@ public class MainGamePanel : MonoBehaviour {
 
   	// Use this for initialization
 	void Start( ) {
-		
+		Panel.gamePanel = Panel.GAME_PHASE.MAIN_GAME;
 	}
 	
 	// Update is called once per frame
@@ -32,34 +32,48 @@ public class MainGamePanel : MonoBehaviour {
 			case 3:                      
 				Panel.gamePanel = Panel.GAME_PHASE.PHOTO;
 				break;
+			case 4:
+				Panel.gamePanel = Panel.GAME_PHASE.PAUSE;
+				break;
 		}
 	}
 
 	void PanelStateChanger( ) {
 		switch ( Panel.gamePanel ) {
 			case Panel.GAME_PHASE.PLAY_METHOD:
-				panel[ 0 ].SetActive( false );
+				panel[ 0 ].SetActive( true );
 				panel[ 1 ].SetActive( false );
 				panel[ 2 ].SetActive( false );
 				panel[ 3 ].SetActive( false );
+				panel[ 4 ].SetActive( false );
 				break;
 			case Panel.GAME_PHASE.MAIN_GAME:
 				panel[ 0 ].SetActive( false );
 				panel[ 1 ].SetActive( true );
 				panel[ 2 ].SetActive( false );
 				panel[ 3 ].SetActive( false );
+				panel[ 4 ].SetActive( false );
 				break;
 			case Panel.GAME_PHASE.RESULT:
 				panel[ 0 ].SetActive( false );
 				panel[ 1 ].SetActive( false );
 				panel[ 2 ].SetActive( true );
 				panel[ 3 ].SetActive( false );
+				panel[ 4 ].SetActive( false );
 				break;
 			case Panel.GAME_PHASE.PHOTO:
 				panel[ 0 ].SetActive( false );
 				panel[ 1 ].SetActive( false );
 				panel[ 2 ].SetActive( false );
 				panel[ 3 ].SetActive( true );
+				panel[ 4 ].SetActive( false );
+				break;
+			case Panel.GAME_PHASE.PAUSE:
+				panel[ 0 ].SetActive( false );
+				panel[ 1 ].SetActive( true );
+				panel[ 2 ].SetActive( false );
+				panel[ 3 ].SetActive( false );
+				panel[ 4 ].SetActive( true );
 				break;
 		}
 	}

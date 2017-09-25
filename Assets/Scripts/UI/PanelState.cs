@@ -8,12 +8,17 @@ public class PanelState : MonoBehaviour {
     [SerializeField]
     private GameObject[ ] panel;
 
+	private const float invokeTime = 2.0f;
 
  	// Use this for initialization
 	void Start( ) {
+		Panel.titlePanel = Panel.TITLE_PHASE.LOGO;
+		Invoke( "LoadTitlePanel", invokeTime );
+
+	}
+	void FixedUpdate( ) {
 		
 	}
-	
 	// Update is called once per frame
 	void Update( ) {
         PanelStateChanger( );
@@ -22,16 +27,19 @@ public class PanelState : MonoBehaviour {
     public void SetPanelState( int tabNo ) {
       
         switch( tabNo ) {
-            case 0:
+			case 0:
+				Panel.titlePanel = Panel.TITLE_PHASE.LOGO;
+				break;
+            case 1:
 				Panel.titlePanel = Panel.TITLE_PHASE.TITLE;
                 break;                   
-            case 1:                     
+            case 2:                     
                 Panel.titlePanel = Panel.TITLE_PHASE.MAIN_MENU;
                 break;                   
-            case 2:                      
+            case 3:                      
                 Panel.titlePanel = Panel.TITLE_PHASE.OPTION;
                 break;                   
-            case 3:                      
+            case 4:                      
                 Panel.titlePanel = Panel.TITLE_PHASE.CLEARING_HOUSE;
                 break;
         }
@@ -40,30 +48,45 @@ public class PanelState : MonoBehaviour {
     void PanelStateChanger( ) {
        
 		switch( Panel.titlePanel ) {
-            case Panel.TITLE_PHASE.TITLE:
-                panel[ 0 ].SetActive( true );
-                panel[ 1 ].SetActive( false );
-                panel[ 2 ].SetActive( false );
-                panel[ 3 ].SetActive( false );
+		case Panel.TITLE_PHASE.LOGO:
+			panel[ 0 ].SetActive( true );
+			panel[ 1 ].SetActive( false );
+			panel[ 2 ].SetActive( false );
+			panel[ 3 ].SetActive( false );
+			panel[ 4 ].SetActive( false );
+			break;
+		case Panel.TITLE_PHASE.TITLE:
+			panel[ 0 ].SetActive( false );
+			panel[ 1 ].SetActive( true );
+			panel[ 2 ].SetActive( false );
+			panel[ 3 ].SetActive( false );
+			panel[ 4 ].SetActive( false );
                 break;
             case Panel.TITLE_PHASE.MAIN_MENU:
                 panel[ 0 ].SetActive( false);
-                panel[ 1 ].SetActive( true );
-                panel[ 2 ].SetActive( false );
+			panel[ 1 ].SetActive( false );
+			panel[ 2 ].SetActive( true );
                 panel[ 3 ].SetActive( false );
+			panel[ 4 ].SetActive( false );
                 break;
             case Panel.TITLE_PHASE.OPTION:
                 panel[ 0 ].SetActive( false );
-                panel[ 1 ].SetActive( true );
-                panel[ 2 ].SetActive( true );
-                panel[ 3 ].SetActive( false );
+			panel[ 1 ].SetActive( false );
+			panel[ 2 ].SetActive( false );
+			panel[ 3 ].SetActive( true );
+			panel[ 4 ].SetActive( false );
                 break;
             case Panel.TITLE_PHASE.CLEARING_HOUSE:
                 panel[ 0 ].SetActive( false );
                 panel[ 1 ].SetActive( false );
                 panel[ 2 ].SetActive( false );
-                panel[ 3 ].SetActive( true );
+			panel[ 3 ].SetActive( false );
+			panel[ 4 ].SetActive( true );
                 break;
         }
     }
+
+	public void LoadTitlePanel(  ) {
+		Panel.titlePanel = Panel.TITLE_PHASE.TITLE;
+	}
 }

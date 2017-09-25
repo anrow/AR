@@ -12,14 +12,12 @@ public class DeviceCamera : MonoBehaviour {
     private Texture defaultBackground;
 
     [SerializeField]
-    public RawImage background;
+	public GameObject backgroundPanel;
 
-    [SerializeField]
-    public AspectRatioFitter fit;
-
-    private void Start( ) {
-        defaultBackground = background.texture;
+    /*private void Start( ) {
         WebCamDevice[ ] devices = WebCamTexture.devices;
+
+		defaultBackground = backgroundPanel.GetComponent<MeshRenderer>( ).material.mainTexture;
 
         if( devices.Length == 0 ) {
 
@@ -32,7 +30,7 @@ public class DeviceCamera : MonoBehaviour {
 
         for( int i = 0; i < devices.Length; i++ ) {
             if( !devices[ i ].isFrontFacing ) {
-                backCam = new WebCamTexture( devices[ i ].name, Screen.width, Screen.height );
+				backCam = new WebCamTexture( devices[ i ].name, defaultBackground.width, defaultBackground.height );
             }
         }
 
@@ -42,23 +40,24 @@ public class DeviceCamera : MonoBehaviour {
         }
 
         backCam.Play( );
-        background.texture = backCam;
+		defaultBackground = backCam;
 
         isCamAvailable = true;
     }
 
     private void Update( ) {
-        if( !isCamAvailable ) {
-            return;
-        }
+		if ( !isCamAvailable ) {
+			return;
+		}
+	}*/
 
-        float ratio = (float)backCam.width / (float)backCam.height;
-        fit.aspectRatio = ratio;
+	void Start( ) {
+		WebCamDevice[ ] devices = WebCamTexture.devices;
+		WebCamTexture webCamTexture = new WebCamTexture( );
+		webCamTexture.deviceName = devices[ 0 ].name;
+		this.GetComponent<MeshRenderer>( ).material.mainTexture = webCamTexture; 
+	}
 
-        float scaleY = backCam.videoVerticallyMirrored ? -3f : 3f;
-        background.rectTransform.localScale = new Vector3( 2f, scaleY, 1f );
-
-        int orient = -backCam.videoRotationAngle;
-        background.rectTransform.localEulerAngles = new Vector3( 0, 0, orient );
-    }
+	void Update( ) {
+	}
 }
