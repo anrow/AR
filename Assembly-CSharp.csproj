@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{FA328BBD-B798-4854-C54F-D8119A2987F2}</ProjectGuid>
+    <ProjectGuid>{24732584-FAAE-5324-ECFB-A1AF7CF4F162}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -50,12 +50,16 @@
      <Compile Include="Assets\Scripts\EnemyAI.cs" />
      <Compile Include="Assets\Scripts\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\GameStatus.cs" />
+     <Compile Include="Assets\Scripts\SwipeFun.cs" />
      <Compile Include="Assets\Scripts\TouchController.cs" />
      <Compile Include="Assets\Scripts\UI\ButtonChange.cs" />
      <Compile Include="Assets\Scripts\UI\MainGamePanel.cs" />
      <Compile Include="Assets\Scripts\UI\Panel.cs" />
      <Compile Include="Assets\Scripts\UI\PanelState.cs" />
      <Compile Include="Assets\Scripts\UI\PhoneCamera.cs" />
+     <Compile Include="Assets\Scripts\WebCamera.cs" />
+     <Compile Include="Assets\Scripts\acceleraction.cs" />
+     <Compile Include="Assets\Scripts\touchTest.cs" />
      <Compile Include="Assets\Scripts\webCamScript.cs" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
@@ -83,7 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{AEDCC275-07D1-9E81-87D6-50AB12A96D2F}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{04D796F2-CE3C-7795-4681-D2D673785587}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
