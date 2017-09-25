@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: 8bb9222647289124d86f555d9d650e14
-timeCreated: 1506330996
+guid: d0362dbdcc25c45658330661b756a919
+timeCreated: 1506330997
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
     100002: face
-    100004: head
+    100004: geo
+    100006: head
+    100008: head 1
+    100010: transform1
+    100012: transform2
     400000: //RootNode
     400002: face
-    400004: head
-    2300000: face
-    2300002: head
-    3300000: face
-    3300002: head
+    400004: geo
+    400006: head
+    400008: head 1
+    400010: transform1
+    400012: transform2
+    2300000: head
+    3300000: head
     4300000: head
-    4300002: face
+    7400000: BeAttacked
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -38,7 +44,49 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: BeAttacked
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: geo
+        weight: 1
+      - path: geo/face
+        weight: 1
+      - path: geo/face/transform1
+        weight: 1
+      - path: geo/head 1
+        weight: 1
+      - path: geo/head 1/transform2
+        weight: 1
+      - path: head
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

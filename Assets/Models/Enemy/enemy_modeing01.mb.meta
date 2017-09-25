@@ -1,23 +1,10 @@
 fileFormatVersion: 2
 guid: 1790092e123bfd44b9b3739c6cec5207
-timeCreated: 1505116387
+timeCreated: 1506330996
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: face
-    100004: head
-    400000: //RootNode
-    400002: face
-    400004: head
-    2300000: face
-    2300002: head
-    3300000: face
-    3300002: head
-    4300000: head
-    4300002: face
-    9500000: //RootNode
+  fileIDToRecycleName: {}
   materials:
     importMaterials: 1
     materialName: 0
