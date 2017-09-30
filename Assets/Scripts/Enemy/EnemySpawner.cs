@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
+	
 	[SerializeField]
 	public GameObject enemyPrefab;
 
 	[SerializeField]
-	public int enemyNum;
+	public GameObject cameraBox;
 
 	[SerializeField]
-	public GameObject cameraBox;
+	public int enemyCount;
 
 	private const int LEFT_SIZE = 0;
 	private const int RIGHT_SIZE = 1;
@@ -18,13 +19,13 @@ public class EnemySpawner : MonoBehaviour {
 	private const int MIN_SIZE = 0;
 	private const int MAX_SIZE = 2;
 
-	private float sizeX;
-	private float sizeY;
-	private float sizeZ;
+	private float spawn_pos_x;
+	private float spawn_pos_y;
+	private float spawn_pos_z;
 
-	private float offsetX;
-	private float offsetY;
-	private float offsetZ;
+	private float offset_x;
+	private float offset_y;
+	private float offset_z;
 
 	private Vector3 randomVector;
 
@@ -34,46 +35,35 @@ public class EnemySpawner : MonoBehaviour {
 
 	float randX( int whichSize ) { 
 		if ( whichSize == LEFT_SIZE ) {
-			return Random.Range( -sizeX, -offsetX );
+			return Random.Range( -spawn_pos_x, -offset_x );
 		} 
 			
-		return Random.Range( offsetX, sizeX );
+		return Random.Range( offset_x, spawn_pos_x );
 
 	}
 
 	float randY( int whichSize ) { 
 		if ( whichSize == LEFT_SIZE ) {
-			return Random.Range( -sizeY, -offsetY );
+			return Random.Range( -spawn_pos_y, -offset_y );
 		} else {
-			return Random.Range( offsetY, sizeY );
+			return Random.Range( offset_y, spawn_pos_y );
 		}
 	}
 
 	float randZ( int whichSize ) { 
 		if ( whichSize == LEFT_SIZE ) {
-			return Random.Range( -sizeZ, -offsetZ );
+			return Random.Range( -spawn_pos_z, -offset_z );
 		} else {
-			return Random.Range( offsetZ, sizeZ );
+			return Random.Range( offset_z, spawn_pos_z );
 		}
 	}
 
 	// Use this for initialization
 	void Start( ) {
+		
+		enemyCount = 0;
 
-		cameraBox = GameObject.FindWithTag( "CameraBox" );
-
-		sizeX = this.transform.localScale.x / 2;
-		sizeY = this.transform.localScale.y / 2;
-		sizeZ = this.transform.localScale.z / 2;
-
-		offsetX = cameraBox.transform.localScale.x / 2;
-		offsetY = cameraBox.transform.localScale.y / 2;
-		offsetZ = cameraBox.transform.localScale.z / 2;
-
-		randomVector = new Vector3( randX( LeftOrRight( ) ), randY( LeftOrRight( ) ), randZ( LeftOrRight( ) ) );
-
-
-		Instantiate( enemyPrefab, randomVector, Quaternion.identity );
+		StartCoroutine( Spawn( enemyCount ) );
 
 	}
 	
@@ -81,6 +71,34 @@ public class EnemySpawner : MonoBehaviour {
 	void Update( ) {
 		
 
+	}
+
+	private IEnumerator Spawn( int count ) {
+
+		const int MAX_COUNT = 10;
+
+		count = 0;
+
+		while ( count < MAX_COUNT ) {
+			cameraBox = GameObject.FindWithTag( "CameraBox" );
+
+			spawn_pos_x = this.transform.localScale.x / 2;
+			spawn_pos_y = this.transform.localScale.y / 2;
+			spawn_pos_z = this.transform.localScale.z / 2;
+
+			offset_x = cameraBox.transform.localScale.x / 2;
+			offset_y = cameraBox.transform.localScale.y / 2;
+			offset_z = cameraBox.transform.localScale.z / 2;
+
+			randomVector = new Vector3( randX( LeftOrRight( ) ), randY( LeftOrRight( ) ), randZ( LeftOrRight( ) ) );
+
+
+			Instantiate( enemyPrefab, randomVector, Quaternion.identity );
+
+			count++;
+
+			yield return new WaitForSeconds( 1f );
+		}
 	}
 		
 }
