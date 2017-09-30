@@ -26,6 +26,8 @@ public class swipeTest : MonoBehaviour {
 	void Update () {
         if (Input.touchCount > 0)
         {
+			//touchTest ();
+
             Touch touch = Input.GetTouch(0);
 
             swipeLength = swipeLength + touch.deltaPosition.magnitude;
@@ -48,7 +50,7 @@ public class swipeTest : MonoBehaviour {
 
                 if (swipeTime < maxTime && swipeDistance > minSwipeDistance)
                 {
-                    swipe();
+                    //swipe();
                 }
             }
         }	
@@ -57,7 +59,7 @@ public class swipeTest : MonoBehaviour {
     void swipeDouble(){
         float swipeDis = (endPos - startPos).magnitude;
         //Debug.Log(swipeDis);
-        Debug.Log(swipeLength);
+        //Debug.Log(swipeLength);
         if (swipeLength > swipeDis + swipeDoubleMinDis)
         {
             Debug.Log("AttackEnemy");
@@ -98,4 +100,22 @@ public class swipeTest : MonoBehaviour {
             }
         }
     }
+
+	void touchTest(){
+
+		if (Input.GetTouch(0).phase == TouchPhase.Began)
+		{
+			Debug.Log("Began");
+		}
+
+		if (Input.GetTouch(0).phase == TouchPhase.Moved)
+		{
+			Debug.Log("Moved");
+		}
+
+		if (Input.GetTouch(0).phase == TouchPhase.Ended)
+		{
+			Debug.Log("Ended");
+		}
+	}
 }

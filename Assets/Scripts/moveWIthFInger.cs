@@ -10,19 +10,12 @@ public class moveWIthFInger : MonoBehaviour {
 
 	private Quaternion currentRotation;
 
-	public GameObject a;
-	public GameObject b;
-
 	void Start(){
+		
 		currentRotation = transform.rotation;
 
-		Time.timeScale = 0.7f;
 	}
 	void Update() {
-
-
-		Debug.Log(Mathf.Atan2( b.transform.position.x - a.transform.position.x, 
-							   b.transform.position.y - a.transform.position.y ) * Mathf.Rad2Deg);
 		
 		if ( Input.touchCount > 0 ) {
 			
@@ -42,7 +35,6 @@ public class moveWIthFInger : MonoBehaviour {
 			}
 
 		} 
-			
 
 	}
 }
