@@ -6,10 +6,7 @@ using UnityEngine.EventSystems;
 public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 
 	[SerializeField]
-	private GameObject mainCamera;
-
-	[SerializeField]
-	public TouchController touchController;
+	public GameObject mainGameCamera;
 
 	[SerializeField]
 	public GameObject targetMark;
@@ -20,14 +17,14 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 	private bool isTurn = false;
 
 	[SerializeField]
-	public float speed = 2f;
+	public float speed = 10f;
 
 	private Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
 		rb = gameObject.GetComponent<Rigidbody>( );
-		touchController = GameObject.FindObjectOfType<TouchController>( );
+
 	}
 
 	void FixedUpdated( ) {
@@ -36,12 +33,8 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 
 	// Update is called once per frame
 	void Update () {
-		if ( isLocked ) {
-			targetMark.SetActive( true );
-			speed = 0;
-
-		}
-		transform.rotation = mainCamera.transform.rotation;
+		
+		transform.rotation = mainGameCamera.transform.rotation;
 
 		rb.velocity = Vector3.left * speed;
 
@@ -53,6 +46,9 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 	}
 		
 	void OnTriggerEnter( Collider other ) {
+		if ( other.tag == "CameraBox" ) {
+			isTurn = !isTurn;
+		}
 		
 	}
 	void OnTriggerStay( Collider other ) {
