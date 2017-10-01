@@ -8,11 +8,11 @@ public class moveWIthFInger : MonoBehaviour {
 
 	public float smoothBack = 5.0F;
 
-	private Quaternion currentRotation;
+	//private Quaternion currentRotation;
 
 	void Start(){
 		
-		currentRotation = transform.rotation;
+		//currentRotation = transform.rotation;
 
 	}
 	void Update() {

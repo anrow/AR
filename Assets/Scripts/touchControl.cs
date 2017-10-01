@@ -8,8 +8,9 @@ public class touchControl : MonoBehaviour {
 	public float minSwipeDistance;
 	public float swipeDoubleMinDis;
 	public float smooth = 5.0F;
-	public float smoothBack = 5.0F;
+	public float smoothMoveBack = 20F;
 	public GameObject onhUsa;
+	public bool attackEnemy;
 
 	float startTime;
 	float endTime;
@@ -20,10 +21,16 @@ public class touchControl : MonoBehaviour {
 	float swipeTime;
 	float swipeLength;
 
+	bool moveBack;
+
 	// Use this for initialization
 	void Start () {
 		
 		swipeLength = 0f;
+
+		attackEnemy = false;
+
+		moveBack = false;
 	}
 
 	// Update is called once per frame
@@ -48,6 +55,9 @@ public class touchControl : MonoBehaviour {
 				}
 
 				if (touch.phase == TouchPhase.Ended) {
+
+					moveBack = true;
+
 					endTime = Time.time;
 					endPos = touch.position;
 
@@ -61,7 +71,10 @@ public class touchControl : MonoBehaviour {
 					}
 				}
 			}
-		}	
+		}
+
+		moveBackOnhusa ();
+
 	}
 
 	void swipeDouble(){
@@ -71,6 +84,8 @@ public class touchControl : MonoBehaviour {
 		if (swipeLength > swipeDis + swipeDoubleMinDis)
 		{
 			Debug.Log("AttackEnemy");
+			attackEnemy = true;
+			Debug.Log (attackEnemy);
 		}
 		swipeLength = 0;
 	}
@@ -130,16 +145,23 @@ public class touchControl : MonoBehaviour {
 	void moveOnhusa(){
 
 		float angleZ = Mathf.Atan2( Input.GetTouch(0).position.x - onhUsa.transform.position.x, 
-			Input.GetTouch(0).position.y - onhUsa.transform.position.y ) * Mathf.Rad2Deg;
+									Input.GetTouch(0).position.y - onhUsa.transform.position.y ) * Mathf.Rad2Deg;
 
 		Quaternion target = Quaternion.Euler( 0, 0, -angleZ );
 
 		onhUsa.transform.rotation = Quaternion.Slerp( onhUsa.transform.rotation, target, Time.deltaTime * smooth );
 
-		if ( Input.GetTouch(0).phase == TouchPhase.Ended ) {
-			
-			target = Quaternion.Euler( 0, 0, 0 );
-			onhUsa.transform.rotation = Quaternion.Slerp( onhUsa.transform.rotation, target, Time.smoothDeltaTime * smoothBack );
+	}
+
+	void moveBackOnhusa(){
+		
+		if (moveBack) {
+
+			Debug.Log ("moveBack: " + moveBack);
+
+			Quaternion target = Quaternion.Euler (onhUsa.transform.rotation.x, onhUsa.transform.rotation.y, 0f);
+
+			onhUsa.transform.rotation = Quaternion.Slerp (onhUsa.transform.rotation, target, Time.deltaTime * smoothMoveBack);
 
 		}
 
