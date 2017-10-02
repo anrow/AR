@@ -12,18 +12,26 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 	public GameObject targetMark;
 
 	[SerializeField]
-	public bool isLocked = false;
+	public bool isLocked;
 
 	private bool isTurn = false;
 
 	[SerializeField]
-	public float speed = 10f;
+	public float speed;
 
 	private Rigidbody rb;
 
+	Quaternion angle;
 	// Use this for initialization
 	void Start () {
+
+		mainGameCamera = GameObject.FindGameObjectWithTag ("MainCamera");
+
 		rb = gameObject.GetComponent<Rigidbody>( );
+
+		angle = Quaternion.Euler (0, 180, 0);
+
+		targetMark.SetActive (false);
 
 	}
 
@@ -33,9 +41,18 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 
 	// Update is called once per frame
 	void Update () {
-		
-		transform.rotation = mainGameCamera.transform.rotation;
+		if (isLocked) {
+			targetMark.SetActive (true);
 
+
+		} else {
+			targetMark.SetActive (false);
+		}
+			
+		//transform.rotation = mainGameCamera.transform.rotation;
+		//transform.Rotate( mainGameCamera.transform.rotation.x, mainGameCamera.transform.rotation.y + 180, mainGameCamera.transform.rotation.z );
+		//transform.rotation = Quaternion.Euler( mainGameCamera.transform.rotation.x, mainGameCamera.transform.rotation.y + 180, mainGameCamera.transform.rotation.z );
+		transform.LookAt(mainGameCamera.transform.position);
 		rb.velocity = Vector3.left * speed;
 
 		if ( isTurn ) {
@@ -62,10 +79,8 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 
 	public void OnPointerClick (PointerEventData eventData) 
 	{
-		if( eventData.clickCount > 0 ){
 
-			isLocked = true;
-
-		}
+		isLocked = !isLocked;
 	}
+		
 }
