@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{24732584-FAAE-5324-ECFB-A1AF7CF4F162}</ProjectGuid>
+    <ProjectGuid>{FA328BBD-B798-4854-C54F-D8119A2987F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -47,20 +47,21 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camera\DeviceCamera.cs" />
-     <Compile Include="Assets\Scripts\EnemyAI.cs" />
-     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyAI.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyAnimate.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\GameStatus.cs" />
-     <Compile Include="Assets\Scripts\SwipeFun.cs" />
-     <Compile Include="Assets\Scripts\TouchController.cs" />
      <Compile Include="Assets\Scripts\UI\ButtonChange.cs" />
      <Compile Include="Assets\Scripts\UI\MainGamePanel.cs" />
      <Compile Include="Assets\Scripts\UI\Panel.cs" />
      <Compile Include="Assets\Scripts\UI\PanelState.cs" />
      <Compile Include="Assets\Scripts\UI\PhoneCamera.cs" />
+     <Compile Include="Assets\Scripts\UVScroll.cs" />
      <Compile Include="Assets\Scripts\WebCamera.cs" />
-     <Compile Include="Assets\Scripts\acceleraction.cs" />
-     <Compile Include="Assets\Scripts\touchTest.cs" />
-     <Compile Include="Assets\Scripts\webCamScript.cs" />
+     <Compile Include="Assets\Scripts\moveWIthFInger.cs" />
+     <Compile Include="Assets\Scripts\swipeTest.cs" />
+     <Compile Include="Assets\Scripts\touchControl.cs" />
+     <Compile Include="Assets\Scripts\uvTexture.cs" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
@@ -87,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{04D796F2-CE3C-7795-4681-D2D673785587}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{AEDCC275-07D1-9E81-87D6-50AB12A96D2F}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class EnemyAI : MonoBehaviour, IPointerClickHandler {
+public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 
 	[SerializeField]
 	public GameObject mainGameCamera;
 
 	[SerializeField]
 	public GameObject targetMark;
+
+	[SerializeField]
+	touchControl touchCro;
 
 	[SerializeField]
 	public bool isLocked;
@@ -21,15 +25,14 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 
 	private Rigidbody rb;
 
-	Quaternion angle;
 	// Use this for initialization
 	void Start () {
+		
+		touchCro = GameObject.Find( "TouchController" ).GetComponent<touchControl>( );
 
 		mainGameCamera = GameObject.FindGameObjectWithTag ("MainCamera");
 
 		rb = gameObject.GetComponent<Rigidbody>( );
-
-		angle = Quaternion.Euler (0, 180, 0);
 
 		targetMark.SetActive (false);
 
@@ -41,18 +44,10 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 
 	// Update is called once per frame
 	void Update () {
-		if (isLocked) {
-			targetMark.SetActive (true);
-
-
-		} else {
-			targetMark.SetActive (false);
-		}
 			
-		//transform.rotation = mainGameCamera.transform.rotation;
-		//transform.Rotate( mainGameCamera.transform.rotation.x, mainGameCamera.transform.rotation.y + 180, mainGameCamera.transform.rotation.z );
-		//transform.rotation = Quaternion.Euler( mainGameCamera.transform.rotation.x, mainGameCamera.transform.rotation.y + 180, mainGameCamera.transform.rotation.z );
+
 		transform.LookAt(mainGameCamera.transform.position);
+
 		rb.velocity = Vector3.left * speed;
 
 		if ( isTurn ) {
@@ -60,6 +55,22 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 		} else if ( !isTurn ) {
 			rb.velocity = Vector3.right * -speed;
 		}
+	}
+
+	public void Dead() {
+
+		transform.FindChild("face").GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", new Vector2(0.5f, 0f));			
+		
+		GetComponent<Animator> ().Stop ();
+
+		Quaternion target = Quaternion.Euler (-70f, 180f, 0f);
+
+		transform.rotation = Quaternion.Slerp (transform.rotation, target, Time.deltaTime * 2);
+
+		touchCro.targer = null;
+
+		Destroy (gameObject, 2f);
+
 	}
 		
 	void OnTriggerEnter( Collider other ) {
@@ -77,10 +88,32 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 		}
 	}
 
-	public void OnPointerClick (PointerEventData eventData) 
-	{
+	public void OnPointerClick(PointerEventData eventData) 
+	{ 
+		if ( touchCro.targer != null ) {
+			if ( touchCro.targer != gameObject ) {
+				touchCro.targer.GetComponent<EnemyAI>( ).MarkKill( );
+				touchCro.targer.GetComponent<EnemyAI>( ).isLocked = false;
+				touchCro.targer = null;
+			}
+		}
 
-		isLocked = !isLocked;
+		if ( !isLocked ) {
+			isLocked = true;
+			rb.isKinematic = true;
+			touchCro.targer = gameObject;
+			targetMark.SetActive (true);
+		} else {
+			isLocked = false;
+			rb.isKinematic = false;
+			touchCro.targer = null;
+			targetMark.SetActive (false);
+		}
+			
+	}
+
+	public void MarkKill() {
+		targetMark.SetActive (false);
 	}
 		
 }

@@ -12,6 +12,8 @@ public class touchControl : MonoBehaviour {
 	public GameObject onhUsa;
 	public bool attackEnemy;
 
+	public GameObject targer;
+
 	float startTime;
 	float endTime;
 
@@ -35,10 +37,9 @@ public class touchControl : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		
 		if (Input.touchCount > 0)
 		{
-			//touchTest ();
-
 			Touch touch = Input.GetTouch(0);
 
 			if (touch.position.y <= 300) {
@@ -83,11 +84,13 @@ public class touchControl : MonoBehaviour {
 		//Debug.Log(swipeLength);
 		if (swipeLength > swipeDis + swipeDoubleMinDis)
 		{
+			if ( targer == null ) {
+				return;
+			}
 			Debug.Log("AttackEnemy");
-			attackEnemy = true;
-			Debug.Log (attackEnemy);
+			targer.GetComponent<EnemyAI>( ).Dead( );
+			swipeLength = 0;
 		}
-		swipeLength = 0;
 	}
 
 	void swipe(){
@@ -157,7 +160,7 @@ public class touchControl : MonoBehaviour {
 		
 		if (moveBack) {
 
-			Debug.Log ("moveBack: " + moveBack);
+			//Debug.Log ("moveBack: " + moveBack);
 
 			Quaternion target = Quaternion.Euler (onhUsa.transform.rotation.x, onhUsa.transform.rotation.y, 0f);
 
@@ -166,5 +169,7 @@ public class touchControl : MonoBehaviour {
 		}
 
 	}
+
+
 		
 }
