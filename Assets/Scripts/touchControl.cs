@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class touchControl : MonoBehaviour {
+public class touchControl : MonoBehaviour, IPointerClickHandler {
 
 	public float maxTime;
 	public float minSwipeDistance;
@@ -11,6 +12,7 @@ public class touchControl : MonoBehaviour {
 	public float smoothMoveBack = 20F;
 	public GameObject onhUsa;
 	public bool attackEnemy;
+	public EnemyAI enemyAi;
 
 	float startTime;
 	float endTime;
@@ -23,9 +25,14 @@ public class touchControl : MonoBehaviour {
 
 	bool moveBack;
 
+	[SerializeField]
+	public RaycastHit hit;
+
 	// Use this for initialization
 	void Start () {
-		
+
+		enemyAi = FindObjectOfType<EnemyAI> ();
+
 		swipeLength = 0f;
 
 		attackEnemy = false;
@@ -40,6 +47,14 @@ public class touchControl : MonoBehaviour {
 			//touchTest ();
 
 			Touch touch = Input.GetTouch(0);
+
+			Ray ray = Camera.main.ScreenPointToRay (touch.position);
+			if (Physics.Raycast (ray, out hit)) {
+				if (hit.collider.tag == "Enemy") {
+					Debug.Log ("Enemy hit !!");
+				}
+			}
+			Debug.Log (touch.position);
 
 			if (touch.position.y <= 300) {
 
@@ -77,11 +92,11 @@ public class touchControl : MonoBehaviour {
 
 	}
 
-	void swipeDouble(){
+	public void swipeDouble(){
 		float swipeDis = (endPos - startPos).magnitude;
 		//Debug.Log(swipeDis);
 		//Debug.Log(swipeLength);
-		if (swipeLength > swipeDis + swipeDoubleMinDis)
+		if (swipeLength > swipeDis + swipeDoubleMinDis /*&& enemyAi.isLocked*/ )
 		{
 			Debug.Log("AttackEnemy");
 			attackEnemy = true;
@@ -165,6 +180,11 @@ public class touchControl : MonoBehaviour {
 
 		}
 
+	}
+
+	public void OnPointerClick( PointerEventData eventData ) {
+		Debug.Log ("enemy click");
+		
 	}
 		
 }

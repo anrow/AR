@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EnemyAI : MonoBehaviour, IPointerClickHandler {
+public class EnemyAI : MonoBehaviour {
+
+	[SerializeField]
+	public touchControl touch_control;
 
 	[SerializeField]
 	public GameObject mainGameCamera;
@@ -14,24 +17,23 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 	[SerializeField]
 	public bool isLocked;
 
-	private bool isTurn = false;
-
 	[SerializeField]
 	public float speed;
 
+	private bool isTurn = false;
+
 	private Rigidbody rb;
 
-	Quaternion angle;
 	// Use this for initialization
 	void Start () {
+
+		touch_control = GameObject.FindObjectOfType<touchControl> ();
 
 		mainGameCamera = GameObject.FindGameObjectWithTag ("MainCamera");
 
 		rb = gameObject.GetComponent<Rigidbody>( );
 
-		angle = Quaternion.Euler (0, 180, 0);
-
-		targetMark.SetActive (false);
+		isLocked = false;
 
 	}
 
@@ -43,15 +45,12 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 	void Update () {
 		if (isLocked) {
 			targetMark.SetActive (true);
-
-
+			rb.isKinematic = true;
 		} else {
 			targetMark.SetActive (false);
+			rb.isKinematic = false;
 		}
 			
-		//transform.rotation = mainGameCamera.transform.rotation;
-		//transform.Rotate( mainGameCamera.transform.rotation.x, mainGameCamera.transform.rotation.y + 180, mainGameCamera.transform.rotation.z );
-		//transform.rotation = Quaternion.Euler( mainGameCamera.transform.rotation.x, mainGameCamera.transform.rotation.y + 180, mainGameCamera.transform.rotation.z );
 		transform.LookAt(mainGameCamera.transform.position);
 		rb.velocity = Vector3.left * speed;
 
@@ -60,6 +59,12 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 		} else if ( !isTurn ) {
 			rb.velocity = Vector3.right * -speed;
 		}
+
+		if (touch_control.hit.collider == this.GetComponent<SphereCollider> ()) {
+			isLocked = true;
+			Debug.Log ("Be Hit!!");
+		}
+
 	}
 		
 	void OnTriggerEnter( Collider other ) {
@@ -76,11 +81,4 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler {
 			isTurn = !isTurn;
 		}
 	}
-
-	public void OnPointerClick (PointerEventData eventData) 
-	{
-
-		isLocked = !isLocked;
-	}
-		
 }
