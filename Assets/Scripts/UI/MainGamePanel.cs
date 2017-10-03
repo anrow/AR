@@ -9,11 +9,23 @@ public class MainGamePanel : MonoBehaviour {
 
   	// Use this for initialization
 	void Start( ) {
+
 		Panel.gamePanel = Panel.GAME_PHASE.MAIN_GAME;
 	}
 	
 	// Update is called once per frame
 	void Update( ) {
+		
+		if ( Panel.gamePanel == Panel.GAME_PHASE.PAUSE ) {
+			
+			Time.timeScale = 0;
+
+		} else {
+			
+			Time.timeScale = 1;
+
+		}
+
 		PanelStateChanger( );
 	}
 		
@@ -83,20 +95,21 @@ public class MainGamePanel : MonoBehaviour {
 				panel[ 4 ].SetActive( true );
 				panel[ 5 ].SetActive( false );
 				break;
-		case Panel.GAME_PHASE.CLEAR:
-			panel[ 0 ].SetActive( false );
-			panel[ 1 ].SetActive( false );
-			panel[ 2 ].SetActive( false );
-			panel[ 3 ].SetActive( false );
-			panel[ 4 ].SetActive( false );
-			panel[ 5 ].SetActive( true );
+			case Panel.GAME_PHASE.CLEAR:
+				panel[ 0 ].SetActive( false );
+				panel[ 1 ].SetActive( false );
+				panel[ 2 ].SetActive( false );
+				panel[ 3 ].SetActive( false );
+				panel[ 4 ].SetActive( false );
+				panel[ 5 ].SetActive( true );
 
-			Invoke( "MoveToTitle" , 4f );
+				Invoke( "MoveToTitle" , 4f );
 				break;
 		}
 	}
 
 	public void MoveToTitle( ) {
+		Time.timeScale = 1;
 		SceneManager.LoadScene( "title" );
 	}
 }

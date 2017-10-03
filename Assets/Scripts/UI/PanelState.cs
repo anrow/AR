@@ -8,13 +8,13 @@ public class PanelState : MonoBehaviour {
     [SerializeField]
     private GameObject[ ] panel;
 
-	private const float invokeTime = 2.0f;
+	private const float invokeTime = 4.0f;
 
  	// Use this for initialization
 	void Start( ) {
-		Panel.titlePanel = Panel.TITLE_PHASE.LOGO;
+		Time.timeScale = 1;
 		Invoke( "LoadTitlePanel", invokeTime );
-
+		Panel.titlePanel = Panel.TITLE_PHASE.LOGO;
 	}
 	void FixedUpdate( ) {
 		
