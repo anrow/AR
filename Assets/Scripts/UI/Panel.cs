@@ -20,7 +20,8 @@ public static class Panel {
 		MAIN_GAME,
 		RESULT,
 		PHOTO,
-		PAUSE
+		PAUSE,
+		CLEAR
 	}
 		
 	public static TITLE_PHASE titlePanel = TITLE_PHASE.LOGO;

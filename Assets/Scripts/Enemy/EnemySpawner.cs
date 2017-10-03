@@ -75,7 +75,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	private IEnumerator Spawn( int count ) {
 
-		const int MAX_COUNT = 10;
+		const int MAX_COUNT = 20;
 
 		count = 0;
 
@@ -97,7 +97,7 @@ public class EnemySpawner : MonoBehaviour {
 
 			count++;
 
-			yield return new WaitForSeconds( 1f );
+			yield return new WaitForSeconds( 0.5f );
 		}
 	}
 		

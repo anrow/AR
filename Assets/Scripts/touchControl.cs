@@ -12,7 +12,7 @@ public class touchControl : MonoBehaviour {
 	public GameObject onhUsa;
 	public bool attackEnemy;
 
-	public GameObject targer;
+	public GameObject target;
 
 	float startTime;
 	float endTime;
@@ -24,6 +24,8 @@ public class touchControl : MonoBehaviour {
 	float swipeLength;
 
 	bool moveBack;
+
+	public int enemyDownCount = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -84,12 +86,15 @@ public class touchControl : MonoBehaviour {
 		//Debug.Log(swipeLength);
 		if (swipeLength > swipeDis + swipeDoubleMinDis)
 		{
-			if ( targer == null ) {
+			if ( target == null ) {
 				return;
 			}
 			Debug.Log("AttackEnemy");
-			targer.GetComponent<EnemyAI>( ).Dead( );
+			enemyDownCount++;
+			Debug.Log( "++" );
+			target.GetComponent<EnemyAI>( ).Dead( );
 			swipeLength = 0;
+
 		}
 	}
 

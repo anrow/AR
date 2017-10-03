@@ -48,10 +48,11 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camera\DeviceCamera.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyAI.cs" />
-     <Compile Include="Assets\Scripts\Enemy\EnemyAnimate.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\GameStatus.cs" />
      <Compile Include="Assets\Scripts\UI\ButtonChange.cs" />
+     <Compile Include="Assets\Scripts\UI\GamePause.cs" />
      <Compile Include="Assets\Scripts\UI\MainGamePanel.cs" />
      <Compile Include="Assets\Scripts\UI\Panel.cs" />
      <Compile Include="Assets\Scripts\UI\PanelState.cs" />

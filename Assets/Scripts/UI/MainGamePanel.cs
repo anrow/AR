@@ -35,6 +35,9 @@ public class MainGamePanel : MonoBehaviour {
 			case 4:
 				Panel.gamePanel = Panel.GAME_PHASE.PAUSE;
 				break;
+			case 5:
+				Panel.gamePanel = Panel.GAME_PHASE.CLEAR;
+				break;
 		}
 	}
 
@@ -46,6 +49,7 @@ public class MainGamePanel : MonoBehaviour {
 				panel[ 2 ].SetActive( false );
 				panel[ 3 ].SetActive( false );
 				panel[ 4 ].SetActive( false );
+				panel[ 5 ].SetActive( false );
 				break;
 			case Panel.GAME_PHASE.MAIN_GAME:
 				panel[ 0 ].SetActive( false );
@@ -53,6 +57,7 @@ public class MainGamePanel : MonoBehaviour {
 				panel[ 2 ].SetActive( false );
 				panel[ 3 ].SetActive( false );
 				panel[ 4 ].SetActive( false );
+				panel[ 5 ].SetActive( false );
 				break;
 			case Panel.GAME_PHASE.RESULT:
 				panel[ 0 ].SetActive( false );
@@ -60,6 +65,7 @@ public class MainGamePanel : MonoBehaviour {
 				panel[ 2 ].SetActive( true );
 				panel[ 3 ].SetActive( false );
 				panel[ 4 ].SetActive( false );
+				panel[ 5 ].SetActive( false );
 				break;
 			case Panel.GAME_PHASE.PHOTO:
 				panel[ 0 ].SetActive( false );
@@ -67,6 +73,7 @@ public class MainGamePanel : MonoBehaviour {
 				panel[ 2 ].SetActive( false );
 				panel[ 3 ].SetActive( true );
 				panel[ 4 ].SetActive( false );
+				panel[ 5 ].SetActive( false );
 				break;
 			case Panel.GAME_PHASE.PAUSE:
 				panel[ 0 ].SetActive( false );
@@ -74,7 +81,22 @@ public class MainGamePanel : MonoBehaviour {
 				panel[ 2 ].SetActive( false );
 				panel[ 3 ].SetActive( false );
 				panel[ 4 ].SetActive( true );
+				panel[ 5 ].SetActive( false );
+				break;
+		case Panel.GAME_PHASE.CLEAR:
+			panel[ 0 ].SetActive( false );
+			panel[ 1 ].SetActive( false );
+			panel[ 2 ].SetActive( false );
+			panel[ 3 ].SetActive( false );
+			panel[ 4 ].SetActive( false );
+			panel[ 5 ].SetActive( true );
+
+			Invoke( "MoveToTitle" , 4f );
 				break;
 		}
+	}
+
+	public void MoveToTitle( ) {
+		SceneManager.LoadScene( "title" );
 	}
 }

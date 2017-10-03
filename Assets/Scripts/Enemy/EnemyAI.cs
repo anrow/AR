@@ -20,6 +20,8 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 
 	private bool isTurn = false;
 
+	public bool isDead;
+
 	[SerializeField]
 	public float speed;
 
@@ -36,6 +38,7 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 
 		targetMark.SetActive (false);
 
+		isDead = false;
 	}
 
 	void FixedUpdated( ) {
@@ -45,8 +48,9 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 	// Update is called once per frame
 	void Update () {
 			
-
-		transform.LookAt(mainGameCamera.transform.position);
+		if ( !isDead ) {
+			transform.LookAt( mainGameCamera.transform.position );
+		}
 
 		rb.velocity = Vector3.left * speed;
 
@@ -59,17 +63,19 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 
 	public void Dead() {
 
+		isDead = true;
+
 		transform.FindChild("face").GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", new Vector2(0.5f, 0f));			
 		
 		GetComponent<Animator> ().Stop ();
 
-		Quaternion target = Quaternion.Euler (-70f, 180f, 0f);
+		//Quaternion target = Quaternion.Euler (-90f, 180f, 0f);
+		Quaternion targetRotation = Quaternion.Euler( transform.rotation.x - 90, transform.rotation.y + 180, 0 );
+		transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, 0.1f );
 
-		transform.rotation = Quaternion.Slerp (transform.rotation, target, Time.deltaTime * 2);
+		touchCro.target = null;
 
-		touchCro.targer = null;
-
-		Destroy (gameObject, 2f);
+		Destroy (gameObject, 2f );
 
 	}
 		
@@ -90,23 +96,23 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 
 	public void OnPointerClick(PointerEventData eventData) 
 	{ 
-		if ( touchCro.targer != null ) {
-			if ( touchCro.targer != gameObject ) {
-				touchCro.targer.GetComponent<EnemyAI>( ).MarkKill( );
-				touchCro.targer.GetComponent<EnemyAI>( ).isLocked = false;
-				touchCro.targer = null;
+		if ( touchCro.target != null ) {
+			if ( touchCro.target != gameObject ) {
+				touchCro.target.GetComponent<EnemyAI>( ).MarkKill( );
+				touchCro.target.GetComponent<EnemyAI>( ).isLocked = false;
+				touchCro.target = null;
 			}
 		}
 
 		if ( !isLocked ) {
 			isLocked = true;
 			rb.isKinematic = true;
-			touchCro.targer = gameObject;
+			touchCro.target = gameObject;
 			targetMark.SetActive (true);
 		} else {
 			isLocked = false;
 			rb.isKinematic = false;
-			touchCro.targer = null;
+			touchCro.target = null;
 			targetMark.SetActive (false);
 		}
 			
