@@ -67,7 +67,7 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 
 		transform.FindChild("face").GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", new Vector2(0.5f, 0f));			
 		
-		GetComponent<Animator> ().Stop ();
+		GetComponent<Animator>( ).StopRecording( );
 
 		//Quaternion target = Quaternion.Euler (-90f, 180f, 0f);
 		Quaternion targetRotation = Quaternion.Euler( transform.rotation.x - 90, transform.rotation.y + 180, 0 );
