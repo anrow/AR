@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class PhoneCamera : MonoBehaviour {
 		
@@ -15,8 +16,17 @@ public class PhoneCamera : MonoBehaviour {
 
 	public AspectRatioFitter fit;
 
+	public Button takePhotoBtn;
+
+
+
 	// Use this for initialization
 	void Start () {
+
+		takePhotoBtn = GameObject.Find ("TakePhotoButton").GetComponent<Button> ();
+
+		Debug.Log (takePhotoBtn);
+
 		defaultBackGround = background.texture;
 
 		WebCamDevice[] devices = WebCamTexture.devices;
@@ -60,6 +70,23 @@ public class PhoneCamera : MonoBehaviour {
 		int orient = -backCam.videoRotationAngle;
 
 		background.rectTransform.localEulerAngles = new Vector3( 0, 0, orient );
+
+
+
+	}
+
+	private void TakePhoto( ) {
+
+		Texture2D photo = new Texture2D (backCam.width, backCam.height);
+
+		photo.SetPixels (backCam.GetPixels ());
+
+		photo.Apply ();
+
+		//Encode to a PNG
+		byte[] bytes = photo.EncodeToPNG();
+		//Write out the PNG. Of course you have to substitute your_path for something sensible
+		File.WriteAllBytes( "Assets/" + "photo.png", bytes);
 
 	}
 }
