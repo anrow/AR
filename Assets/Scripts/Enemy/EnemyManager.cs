@@ -16,9 +16,7 @@ public class EnemyManager : MonoBehaviour {
 	[SerializeField]
 	public MainGamePanel mainGamePanel;
 
-	public int count;
-
-	private const int MAX_COUNT = 5;
+	private const int MAX_COUNT = 10;
 
 	void Start( ) {
 		
@@ -33,20 +31,30 @@ public class EnemyManager : MonoBehaviour {
 
 		enemyAi = GameObject.FindObjectOfType<EnemyAI>( );
 
-		count = touchCro.enemyDownCount;
+		int m_Count = touchCro.enemyDownCount;
 
-		if ( count > MAX_COUNT ) {
+		if ( m_Count >= MAX_COUNT ) {
 
-			count = 0;
+			m_Count = 0;
 
-			touchCro.enemyDownCount = count;
+			touchCro.enemyDownCount = m_Count;
 
-			Invoke( "SetClear", 2f );
+			RemoveAllEnemy( );
 
 			Debug.Log( "clear" );
 		}
 	}
+
 	void SetClear( ) {
 		mainGamePanel.SetPanelState( 5 );
 	}
+
+	void RemoveAllEnemy( ) {
+		GameObject[ ] RemoveList = GameObject.FindGameObjectsWithTag( "Enemy" );
+		for ( int i = 0; i < RemoveList.Length; i++ ) {
+			Destroy( RemoveList[ i ].gameObject );
+			Debug.Log( i );
+		}
+	}
+
 }

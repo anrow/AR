@@ -39,6 +39,10 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 		targetMark.SetActive (false);
 
 		isDead = false;
+
+		if ( this.gameObject.tag == "Boss" ) {
+			transform.FindChild( "face" ).GetComponent<Renderer>( ).material.SetTextureOffset( "_MainTex", new Vector2( 0f, -0.5f ) );	
+		}
 	}
 
 	void FixedUpdated( ) {
@@ -65,8 +69,8 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 
 		isDead = true;
 
-		transform.FindChild("face").GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", new Vector2(0.5f, 0f));			
-		
+		transform.FindChild( "face" ).GetComponent<Renderer>( ).material.SetTextureOffset( "_MainTex", new Vector2( 0.5f, 0f ) );	
+
 		GetComponent<Animator>( ).StopRecording( );
 
 		//Quaternion target = Quaternion.Euler (-90f, 180f, 0f);

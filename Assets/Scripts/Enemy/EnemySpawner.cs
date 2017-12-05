@@ -8,7 +8,13 @@ public class EnemySpawner : MonoBehaviour {
 	public GameObject enemyPrefab;
 
 	[SerializeField]
+	public GameObject BossPrefab;
+
+	[SerializeField]
 	public GameObject cameraBox;
+
+	[SerializeField]
+	public PowerCageController m_PowerCageController;
 
 	[SerializeField]
 	public int enemyCount;
@@ -70,7 +76,9 @@ public class EnemySpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update( ) {
 		
-
+		if ( m_PowerCageController.IsCageReday( ) ) {
+			Invoke( "BossShow", 3f );
+		}
 	}
 
 	private IEnumerator Spawn( int count ) {
@@ -99,6 +107,10 @@ public class EnemySpawner : MonoBehaviour {
 
 			yield return new WaitForSeconds( 0.5f );
 		}
+	}
+
+	private void BossShow( ) {
+		Instantiate( BossPrefab, randomVector, Quaternion.identity );
 	}
 		
 }
