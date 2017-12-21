@@ -48,40 +48,40 @@ public class PanelState : MonoBehaviour {
     void PanelStateChanger( ) {
        
 		switch( Panel.titlePanel ) {
-		case Panel.TITLE_PHASE.LOGO:
-			panel[ 0 ].SetActive( true );
-			panel[ 1 ].SetActive( false );
-			panel[ 2 ].SetActive( false );
-			panel[ 3 ].SetActive( false );
-			panel[ 4 ].SetActive( false );
-			break;
-		case Panel.TITLE_PHASE.TITLE:
-			panel[ 0 ].SetActive( false );
-			panel[ 1 ].SetActive( true );
-			panel[ 2 ].SetActive( false );
-			panel[ 3 ].SetActive( false );
-			panel[ 4 ].SetActive( false );
-                break;
+		    case Panel.TITLE_PHASE.LOGO:
+		    	panel[ 0 ].SetActive( true );
+		    	panel[ 1 ].SetActive( false );
+		    	panel[ 2 ].SetActive( false );
+		    	panel[ 3 ].SetActive( false );
+		    	panel[ 4 ].SetActive( false );
+		    	break;
+		    case Panel.TITLE_PHASE.TITLE:
+		    	panel[ 0 ].SetActive( false );
+		    	panel[ 1 ].SetActive( true );
+		    	panel[ 2 ].SetActive( false );
+		    	panel[ 3 ].SetActive( false );
+		    	panel[ 4 ].SetActive( false );
+                    break;
             case Panel.TITLE_PHASE.MAIN_MENU:
                 panel[ 0 ].SetActive( false);
-			panel[ 1 ].SetActive( false );
-			panel[ 2 ].SetActive( true );
+			    panel[ 1 ].SetActive( false );
+			    panel[ 2 ].SetActive( true );
                 panel[ 3 ].SetActive( false );
-			panel[ 4 ].SetActive( false );
+			    panel[ 4 ].SetActive( false );
                 break;
             case Panel.TITLE_PHASE.OPTION:
                 panel[ 0 ].SetActive( false );
-			panel[ 1 ].SetActive( false );
-			panel[ 2 ].SetActive( false );
-			panel[ 3 ].SetActive( true );
-			panel[ 4 ].SetActive( false );
+			    panel[ 2 ].SetActive( false );
+			    panel[ 3 ].SetActive( true );
+			    panel[ 4 ].SetActive( false );
+			    panel[ 1 ].SetActive( false );
                 break;
             case Panel.TITLE_PHASE.CLEARING_HOUSE:
                 panel[ 0 ].SetActive( false );
                 panel[ 1 ].SetActive( false );
                 panel[ 2 ].SetActive( false );
-			panel[ 3 ].SetActive( false );
-			panel[ 4 ].SetActive( true );
+			    panel[ 3 ].SetActive( false );
+			    panel[ 4 ].SetActive( true );
                 break;
         }
     }
