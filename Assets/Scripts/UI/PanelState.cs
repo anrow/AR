@@ -16,9 +16,7 @@ public class PanelState : MonoBehaviour {
 		Invoke( "LoadTitlePanel", invokeTime );
 		Panel.titlePanel = Panel.TITLE_PHASE.LOGO;
 	}
-	void FixedUpdate( ) {
-		
-	}
+
 	// Update is called once per frame
 	void Update( ) {
         PanelStateChanger( );

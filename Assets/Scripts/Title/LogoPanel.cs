@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LogoFade : MonoBehaviour {
+public class LogoPanel : MonoBehaviour {
 
     [SerializeField]
     private Image m_Image;
@@ -11,19 +11,18 @@ public class LogoFade : MonoBehaviour {
     [SerializeField]
     private const float speed = 0.01f;
 
-    private float alfa;
+    private float m_alfa;
 
-    private void Awake( ) {
-       
-    }
     private void Start( ) {
         if( m_Image == null ) {
-            m_Image = this.GetComponent<Image>( );
+            m_Image = this.gameObject.GetComponentInChildren<Image>( );
         }
-        alfa = m_Image.color.a;
+        m_alfa = 0;
     }
     private void Update( ) {
-        m_Image.color = new Color( 255, 255, 255, alfa );
-        alfa += speed;
+
+        m_Image.color = new Color( 255, 255, 255, m_alfa );
+       
+        m_alfa += speed;
     }
 }
