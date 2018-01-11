@@ -13,7 +13,6 @@ public class TitlePanel : MonoBehaviour {
     }
 
 	public void OnBtnTitleTouchClick( ) {
-		Debug.Log ("!!");
         GameManager.Instance.SetMainMenuPanel( );
     }
 }

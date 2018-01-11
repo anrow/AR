@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainGamePanel : MonoBehaviour {
+	/*
 	[SerializeField]
 	private GameObject[ ] panel;
 
   	// Use this for initialization
-	/*void Start( ) {
+	void Start( ) {
 
 		Panel.gamePanel = Panel.GAME_PHASE.MAIN_GAME;
 	}

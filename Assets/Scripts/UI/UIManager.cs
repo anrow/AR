@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour {
     }
 
     [SerializeField]
-    private List<GameObject> m_PanelList = new List<GameObject>( );
+	private List<GameObject> m_PanelList;
 
     [SerializeField]
     private List<GameObject> m_CurrentPanelList;
@@ -27,14 +27,46 @@ public class UIManager : MonoBehaviour {
     public GameObject mGo_CurrentPanel = null;
 
     private void Start( ) {
-        m_CurrentPanelList = new List<GameObject>( );
 
-		switch (SceneManager.GetActiveScene ().name) {
-		case "title":
-			
-			break;
-		}
     }
+
+	public void TitleInit( ) {
+		m_PanelList = new List<GameObject> ();
+		m_CurrentPanelList = new List<GameObject>( );
+
+		GameObject Go_LogoPanel = GameObject.FindObjectOfType<LogoPanel> ().gameObject;
+		GameObject Go_ShopPanel = GameObject.FindObjectOfType<ShopPanel> ().gameObject;
+		GameObject Go_MainMenuPanel = GameObject.FindObjectOfType<MainMenuPanel> ().gameObject;
+		GameObject Go_OptionPanel = GameObject.FindObjectOfType<OptionPanel> ().gameObject;
+		GameObject Go_TitlePanel = GameObject.FindObjectOfType<TitlePanel> ().gameObject;
+
+		m_PanelList.Add (Go_LogoPanel);
+		m_PanelList.Add (Go_ShopPanel);
+		m_PanelList.Add (Go_MainMenuPanel);
+		m_PanelList.Add (Go_OptionPanel);
+		m_PanelList.Add (Go_TitlePanel);
+
+		foreach (GameObject _Panel in m_PanelList) {
+			_Panel.SetActive (false);
+		}
+
+		Enter<LogoPanel> ();
+
+		Invoke ("SetTitlePanel", 3f);
+
+	}
+
+	public void MainGameInit( ) {
+		m_PanelList = new List<GameObject> ();
+		m_CurrentPanelList = new List<GameObject>( );
+
+		Debug.Log ("game");
+		GameObject Go_MainGamePanel = GameObject.FindObjectOfType<MainGamePanel> ().gameObject;
+		GameObject Go_PlayMethodPanel = GameObject.FindObjectOfType<PlayMethodPanel> ().gameObject;
+
+		m_PanelList.Add (Go_MainGamePanel);
+		m_PanelList.Add (Go_PlayMethodPanel);
+	}
 
     public T Enter<T>( ) where T : MonoBehaviour {
 
@@ -93,6 +125,9 @@ public class UIManager : MonoBehaviour {
             }
 
         }
-
     }
+
+	private void SetTitlePanel( ) {
+		Enter<TitlePanel> ();
+	}
 }
