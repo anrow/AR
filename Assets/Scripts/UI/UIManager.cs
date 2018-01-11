@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class UIManager : MonoBehaviour {
             return instance;
         }
     }
+
     [SerializeField]
     private List<GameObject> m_PanelList = new List<GameObject>( );
 
@@ -26,6 +28,12 @@ public class UIManager : MonoBehaviour {
 
     private void Start( ) {
         m_CurrentPanelList = new List<GameObject>( );
+
+		switch (SceneManager.GetActiveScene ().name) {
+		case "title":
+			
+			break;
+		}
     }
 
     public T Enter<T>( ) where T : MonoBehaviour {

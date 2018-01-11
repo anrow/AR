@@ -8,11 +8,12 @@ public class TitlePanel : MonoBehaviour {
     [SerializeField]
     private Button BtnTitleTouch;
 
-    private void Start( ) {
-        BtnTitleTouch.onClick.AddListener( ( ) => OnBtnTitleTouchClick( ) );
+    private void Awake( ) {
+        
     }
 
-    private void OnBtnTitleTouchClick( ) {
+	public void OnBtnTitleTouchClick( ) {
+		Debug.Log ("!!");
         GameManager.Instance.SetMainMenuPanel( );
     }
 }

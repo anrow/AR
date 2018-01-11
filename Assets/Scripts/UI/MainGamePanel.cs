@@ -8,7 +8,7 @@ public class MainGamePanel : MonoBehaviour {
 	private GameObject[ ] panel;
 
   	// Use this for initialization
-	void Start( ) {
+	/*void Start( ) {
 
 		Panel.gamePanel = Panel.GAME_PHASE.MAIN_GAME;
 	}
@@ -112,4 +112,5 @@ public class MainGamePanel : MonoBehaviour {
 		Time.timeScale = 1;
 		SceneManager.LoadScene( "title" );
 	}
+	*/
 }

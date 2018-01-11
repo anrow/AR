@@ -17,13 +17,13 @@ public class MainMenuPanel : MonoBehaviour {
     private Button BtnMainGame;
 
     [SerializeField]
-    private Button BtnCharacterFirst;
+    private Button BtnCharacterFukuN;
     
     [SerializeField]
-    private Button BtnCharacterSecond;
+    private Button BtnCharacterTokuN;
 
     [SerializeField]
-    private Button BtnCharacterThird;
+    private Button BtnCharacterMiraN;
 
     int BtnTopCount = 1;
 
@@ -50,14 +50,18 @@ public class MainMenuPanel : MonoBehaviour {
                 GameManager.Instance.LoadScene( "mainGame" );
                 break;
 
-            case "BtnCharacterFirst":
-                Animator F_Animator = BtnCharacterFirst.gameObject.GetComponent<Animator>( );
-                F_Animator.SetTrigger( "Pressed" );
+            case "BtnCharacterFukuN":
+				Animator FukuN_Anim = BtnCharacterFukuN.gameObject.GetComponent<Animator>( );
+				FukuN_Anim.SetTrigger( "Pressed" );
                 break;
-            case "BtnCharacterSecond":
-                Animator S_Animator = BtnCharacterSecond.gameObject.GetComponent<Animator>( );
-                S_Animator.SetTrigger( "Pressed" );
+            case "BtnCharacterTokuN":
+				Animator TokuN_Anim = BtnCharacterTokuN.gameObject.GetComponent<Animator>( );
+				TokuN_Anim.SetTrigger( "Pressed" );
                 break;
+			case "BtnCharacterMiraN":
+				Animator MiraN_Anim = BtnCharacterMiraN.gameObject.GetComponent<Animator> ();
+				MiraN_Anim.SetTrigger ("Pressed");
+				break;
         }
     }
 }

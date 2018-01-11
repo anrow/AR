@@ -44,11 +44,7 @@ public class EnemyManager : MonoBehaviour {
 			Debug.Log( "clear" );
 		}
 	}
-
-	void SetClear( ) {
-		mainGamePanel.SetPanelState( 5 );
-	}
-
+		
 	void RemoveAllEnemy( ) {
 		GameObject[ ] RemoveList = GameObject.FindGameObjectsWithTag( "Enemy" );
 		for ( int i = 0; i < RemoveList.Length; i++ ) {

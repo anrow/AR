@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
         if( m_UIManager == null ) {
             m_UIManager = GameObject.FindObjectOfType<UIManager>( );
         }
+		DontDestroyOnLoad (this.gameObject);
     }
 
     private void Start( ) {
