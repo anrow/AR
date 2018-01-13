@@ -10,6 +10,6 @@ public class MainGamePanel : MonoBehaviour {
 
 	public void OnBtnPauseClick( ) {
 		GameManager.Instance.SetGamePause( true );
-		UIManager.Instance.Enter<PausePanel>( );
+		UIManager.Instance.Enter<PausePanel>( true );
 	}
 }

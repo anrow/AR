@@ -50,9 +50,17 @@ public class UIManager : MonoBehaviour {
 			_Panel.SetActive( false );
 		}
 
-		Enter<LogoPanel>( );
+		if( GameManager.IsCreated( ) ) {
 
-		Invoke( "SetTitlePanel", 3f );
+			Enter<LogoPanel>( false );
+
+			Invoke( "SetTitlePanel", 3f );
+
+		} else {
+			
+			Enter<TitlePanel>( false );
+		}
+
 
 	}
 
@@ -77,10 +85,10 @@ public class UIManager : MonoBehaviour {
 			_Panel.SetActive( false );
 		}
 
-		Enter<PlayMethodPanel>( );
+		Enter<PlayMethodPanel>( false );
 	}
 
-    public T Enter<T>( ) where T : MonoBehaviour {
+    public T Enter<T>( bool isBeforePanelActive ) where T : MonoBehaviour {
 
         foreach( var _Panel in m_PanelList ) {
 
@@ -89,7 +97,7 @@ public class UIManager : MonoBehaviour {
             if( thePanel != null ) {
 
                 if( mGo_CurrentPanel != null ) {
-                    mGo_CurrentPanel.SetActive( false );
+                    mGo_CurrentPanel.SetActive( isBeforePanelActive );
                 }
 
                 thePanel.gameObject.SetActive( true );
@@ -140,6 +148,6 @@ public class UIManager : MonoBehaviour {
     }
 
 	private void SetTitlePanel( ) {
-		Enter<TitlePanel>( );
+		Enter<TitlePanel>( false );
 	}
 }

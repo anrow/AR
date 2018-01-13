@@ -9,6 +9,6 @@ public class PlayMethodPanel : MonoBehaviour {
 	private Button BtnPlayMethodStart;
 
 	public void OnBtnPlayMethodStartClick( ) {
-		UIManager.Instance.Enter<MainGamePanel>( );
+		UIManager.Instance.Enter<MainGamePanel>( false );
 	}
 }

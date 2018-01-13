@@ -23,17 +23,28 @@ public class GameManager : MonoBehaviour {
 
 	private static bool isCreated = false; 
 
+	public static bool IsCreated( ) {
+		return isCreated;
+	}
+
     private void Awake( ) {
+
         if( m_UIManager == null ) {
             m_UIManager = GameObject.FindObjectOfType<UIManager>( );
         }
+
 		if( !isCreated ) {
 
 			DontDestroyOnLoad( this.gameObject );
 
 			isCreated = true;
+
 		} else {
+
+			isCreated = false;
+
 			Destroy( this.gameObject );
+
 		}
     }
 
@@ -66,16 +77,16 @@ public class GameManager : MonoBehaviour {
 	} 
 
 	public void SetTitlePanel( ) {
-        m_UIManager.Enter<TitlePanel>( );
+        m_UIManager.Enter<TitlePanel>( false );
     }
     public void SetMainMenuPanel( ) {
-        m_UIManager.Enter<MainMenuPanel>( );
+        m_UIManager.Enter<MainMenuPanel>( false );
     }
     public void SetOptionPanel( ) {
-        m_UIManager.Enter<OptionPanel>( );
+        m_UIManager.Enter<OptionPanel>( true );
     }
     public void SetShopPanel( ) {
-        m_UIManager.Enter<ShopPanel>( );
+        m_UIManager.Enter<ShopPanel>( false );
     }
 
 	public void LoadScene( string sceneName ) {
