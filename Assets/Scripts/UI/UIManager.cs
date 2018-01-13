@@ -46,13 +46,13 @@ public class UIManager : MonoBehaviour {
 		m_PanelList.Add (Go_OptionPanel);
 		m_PanelList.Add (Go_TitlePanel);
 
-		foreach (GameObject _Panel in m_PanelList) {
-			_Panel.SetActive (false);
+		foreach( GameObject _Panel in m_PanelList ) {
+			_Panel.SetActive( false );
 		}
 
-		Enter<LogoPanel> ();
+		Enter<LogoPanel>( );
 
-		Invoke ("SetTitlePanel", 3f);
+		Invoke( "SetTitlePanel", 3f );
 
 	}
 
@@ -60,12 +60,24 @@ public class UIManager : MonoBehaviour {
 		m_PanelList = new List<GameObject> ();
 		m_CurrentPanelList = new List<GameObject>( );
 
-		Debug.Log ("game");
-		GameObject Go_MainGamePanel = GameObject.FindObjectOfType<MainGamePanel> ().gameObject;
-		GameObject Go_PlayMethodPanel = GameObject.FindObjectOfType<PlayMethodPanel> ().gameObject;
+		GameObject Go_PlayMethodPanel = GameObject.FindObjectOfType<PlayMethodPanel>( ).gameObject;
+		GameObject Go_MainGamePanel = GameObject.FindObjectOfType<MainGamePanel>( ).gameObject;
+		GameObject Go_PausePanel = GameObject.FindObjectOfType<PausePanel>( ).gameObject;
+		GameObject Go_ResultPanel = GameObject.FindObjectOfType<ResultPanel>( ).gameObject;
+		GameObject Go_ClearPanel = GameObject.FindObjectOfType<ClearPanel>( ).gameObject;
 
-		m_PanelList.Add (Go_MainGamePanel);
-		m_PanelList.Add (Go_PlayMethodPanel);
+		m_PanelList.Add( Go_PlayMethodPanel );
+		m_PanelList.Add( Go_MainGamePanel );
+		m_PanelList.Add( Go_PausePanel );
+		m_PanelList.Add( Go_ResultPanel );
+		m_PanelList.Add( Go_ClearPanel );
+		
+
+		foreach( GameObject _Panel in m_PanelList ) {
+			_Panel.SetActive( false );
+		}
+
+		Enter<PlayMethodPanel>( );
 	}
 
     public T Enter<T>( ) where T : MonoBehaviour {
@@ -128,6 +140,6 @@ public class UIManager : MonoBehaviour {
     }
 
 	private void SetTitlePanel( ) {
-		Enter<TitlePanel> ();
+		Enter<TitlePanel>( );
 	}
 }
