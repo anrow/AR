@@ -52,17 +52,15 @@ public class UIManager : MonoBehaviour {
 		}
 
 		if( GameManager.IsCreated( ) ) {
-
-			Enter<LogoPanel>( false );
+			
+			GameManager.Instance.SetLogoPanel( );
 
 			Invoke( "SetTitlePanel", 3f );
 
 		} else {
 			
-			Enter<TitlePanel>( false );
+			GameManager.Instance.SetTitlePanel( );
 		}
-
-
 	}
 
 	public void MainGameInit( ) {
@@ -149,7 +147,6 @@ public class UIManager : MonoBehaviour {
     }
 
 	private void SetTitlePanel( ) {
-		Enter<TitlePanel>( false );
-        GameManager.Instance.CurrentGameState = GameManager.GameState.Title;
+		GameManager.Instance.SetTitlePanel( );
 	}
 }

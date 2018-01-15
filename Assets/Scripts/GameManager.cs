@@ -44,9 +44,6 @@ public class GameManager : MonoBehaviour {
         get {
             return m_CurrentGameState;
         }
-        set {
-            m_CurrentGameState = value;
-        }
     }
 
     private GameState m_CurrentGameState = GameState.Null;
@@ -63,17 +60,19 @@ public class GameManager : MonoBehaviour {
         GameObject[ ] mGo_GameManagers = GameObject.FindGameObjectsWithTag( "GameManager" );
 
         foreach( GameObject _Go in mGo_GameManagers ) {
+			
             for( int i = 0; i < mGo_GameManagers.Length; i++ ) {
+				
                 if( i >= 1 ) {
-                    Debug.Log( "false" );
-                    
+					
                     Destroy( mGo_GameManagers[ i ].gameObject );
                     isCreated = false;
-                } else {
-                Debug.Log( "true" );
+
+				} else {
+					
                 isCreated = true;
-                
                 DontDestroyOnLoad( this.gameObject );
+
                 }
             }
         }
@@ -83,18 +82,30 @@ public class GameManager : MonoBehaviour {
         
 		NowSceneName = SceneManager.GetActiveScene( ).name;
 
-		switch( SceneManager.GetActiveScene( ).name ) {
-			case "title":
+		if (NowSceneName == "title") {
+			m_CurrentGameState = GameState.Logo;
+		} else if (NowSceneName == "mainGame") {
+			m_CurrentGameState = GameState.MainGame;
+		}
+
+		switch( m_CurrentGameState ) {
+		case GameState.Logo:
 				m_UIManager.TitleInit( );
-				break;
-			case "mainGame":
+			break;
+		case GameState.Title:
+			
+			break;
+		case GameState.MainMenu:
+			
+			break;
+		case GameState.MainGame:
 				m_UIManager.MainGameInit( );
-				break;
+			break;
 		}
     
 	}
 	private void Update( ) {
-		if( NowSceneName != SceneManager.GetActiveScene( ).name ) {
+		if( NowSceneName != SceneManager.GetActiveScene().name ) {
 			Start( );
         }
 	}
@@ -108,13 +119,20 @@ public class GameManager : MonoBehaviour {
 
 	} 
 
+	public void SetLogoPanel( ) {
+		m_CurrentGameState = GameState.Logo;
+		m_UIManager.Enter<LogoPanel>( false );
+	}
+
 	public void SetTitlePanel( ) {
+		m_CurrentGameState = GameState.Title;
         m_UIManager.Enter<TitlePanel>( false );
-        m_CurrentGameState = GameState.Title;
+		SoundManager.Instance.PlayBGM (0);
     }
-    public void SetMainMenuPanel( ) {
+	public void SetMainMenuPanel( ) {
+		m_CurrentGameState = GameState.MainMenu;
         m_UIManager.Enter<MainMenuPanel>( false );
-        m_CurrentGameState = GameState.MainMenu;
+		SoundManager.Instance.PlayBGM (1);
     }
     public void SetOptionPanel( ) {
         m_UIManager.Enter<OptionPanel>( true );
@@ -122,6 +140,9 @@ public class GameManager : MonoBehaviour {
     public void SetShopPanel( ) {
         m_UIManager.Enter<ShopPanel>( false );
     }
+	public void SetPlayMethodPanel( ) {
+		m_UIManager.Enter<PlayMethodPanel>( false );
+	}
 
 	public void LoadScene( string sceneName ) {
         SceneManager.LoadScene( sceneName );

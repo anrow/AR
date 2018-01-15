@@ -19,7 +19,11 @@ public class SoundManager : MonoBehaviour {
 			return instance;
 		}
 	}
-	
+
+	/*[SerializeField]
+	private Sound[ ] m_Sounds; 
+	*/
+
 	// === AudioSource ===
 	// BGM
     [SerializeField]
@@ -37,17 +41,13 @@ public class SoundManager : MonoBehaviour {
 	private AudioClip[ ] m_Se;
 
 	void Awake( ){
-        /*
-		GameObject[ ] obj = GameObject.FindGameObjectsWithTag( "SoundManager" );
-		if( obj.Length > 1 ){
-			// 既に存在しているなら削除
-			Destroy( gameObject );
-		}else{
-			// 音管理はシーン遷移では破棄させない
-			DontDestroyOnLoad( gameObject );
-		}
-        */
-
+		/*foreach( Sound theSound in m_Sounds ) {
+			theSound.Source = gameObject.AddComponent<AudioSource>( );
+			theSound.Source.clip = theSound.Clip;
+			theSound.Source.volume = theSound.Volume;
+			theSound.Source.pitch = theSound.Pitch;
+			theSound.Source.loop = theSound.isLoop;
+		}*/
 
 		// 全てのAudioSourceコンポーネントを追加する
 
@@ -60,7 +60,12 @@ public class SoundManager : MonoBehaviour {
 		m_SeSource = gameObject.AddComponent<AudioSource>( );
 
 	}
-		
+
+	/*public void Play( string _SoundName ) {
+		Sound theSound = Array.Find( m_Sounds, Sound => Sound.Name == _SoundName );
+		theSound.Source.Play( );
+	}*/
+
 	// ***** BGM再生 *****
 	// BGM再生
 	public void PlayBGM( int index ){

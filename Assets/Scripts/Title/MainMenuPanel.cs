@@ -33,7 +33,7 @@ public class MainMenuPanel : MonoBehaviour {
     public void OnBtnClicked( Button _Btn ) {
         switch( _Btn.name ) {
             case "BtnTop" :
-
+				SoundManager.Instance.PlaySE( 5 );
                 BtnTopCount++;
 
                 BtnShop.gameObject.SetActive( BtnTopCount % 2 != 0 );
@@ -51,9 +51,11 @@ public class MainMenuPanel : MonoBehaviour {
                 GameManager.Instance.SetOptionPanel( );
                 break;
 
-            case "BtnMainGame":
-                SoundManager.Instance.PlaySE( 5 );
-                GameManager.Instance.LoadScene( "mainGame" );
+			case "BtnMainGame":
+				SoundManager.Instance.PlaySE (5);
+
+				GameManager.Instance.LoadScene ("mainGame");
+
                 break;
 
             case "BtnCharacterFukuN":
