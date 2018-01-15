@@ -11,6 +11,7 @@ public class OptionPanel : MonoBehaviour {
     public void OnBtnClicked( Button _Btn ) {
         switch( _Btn.name ) {
             case "BtnOptionBack":
+                SoundManager.Instance.PlaySE( 3 );
                 UIManager.Instance.Back( );
                 break;
         }

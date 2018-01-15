@@ -14,13 +14,14 @@ public class LogoPanel : MonoBehaviour {
     private float m_alfa;
 
     private void Start( ) {
+        
         if( m_Image == null ) {
             m_Image = this.gameObject.GetComponentInChildren<Image>( );
         }
         m_alfa = 0;
     }
     private void Update( ) {
-
+        
         m_Image.color = new Color( 255, 255, 255, m_alfa );
        
         m_alfa += speed;

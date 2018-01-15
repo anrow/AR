@@ -9,6 +9,7 @@ public class MainGamePanel : MonoBehaviour {
 	private Button BtnPause;
 
 	public void OnBtnPauseClick( ) {
+        SoundManager.Instance.PlaySE( 5 );
 		GameManager.Instance.SetGamePause( true );
 		UIManager.Instance.Enter<PausePanel>( true );
 	}

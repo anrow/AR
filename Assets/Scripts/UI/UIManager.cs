@@ -24,10 +24,11 @@ public class UIManager : MonoBehaviour {
     private List<GameObject> m_CurrentPanelList;
 
     [SerializeField]
-    public GameObject mGo_CurrentPanel = null;
+    private GameObject mGo_CurrentPanel = null;
 
-    private void Start( ) {
-
+    public GameObject GetCurrentPanel{
+        get { return mGo_CurrentPanel; }
+        set { mGo_CurrentPanel = value; }
     }
 
 	public void TitleInit( ) {
@@ -40,11 +41,11 @@ public class UIManager : MonoBehaviour {
 		GameObject Go_OptionPanel = GameObject.FindObjectOfType<OptionPanel> ().gameObject;
 		GameObject Go_TitlePanel = GameObject.FindObjectOfType<TitlePanel> ().gameObject;
 
-		m_PanelList.Add (Go_LogoPanel);
-		m_PanelList.Add (Go_ShopPanel);
-		m_PanelList.Add (Go_MainMenuPanel);
-		m_PanelList.Add (Go_OptionPanel);
-		m_PanelList.Add (Go_TitlePanel);
+		m_PanelList.Add( Go_LogoPanel );
+		m_PanelList.Add( Go_ShopPanel );
+		m_PanelList.Add( Go_MainMenuPanel );
+		m_PanelList.Add( Go_OptionPanel );
+		m_PanelList.Add( Go_TitlePanel );
 
 		foreach( GameObject _Panel in m_PanelList ) {
 			_Panel.SetActive( false );
@@ -149,5 +150,6 @@ public class UIManager : MonoBehaviour {
 
 	private void SetTitlePanel( ) {
 		Enter<TitlePanel>( false );
+        GameManager.Instance.CurrentGameState = GameManager.GameState.Title;
 	}
 }

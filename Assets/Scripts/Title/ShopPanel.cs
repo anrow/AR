@@ -10,7 +10,7 @@ public class ShopPanel : MonoBehaviour {
     public void OnBtnClicked( Button _Btn ) {
         switch( _Btn.name ) {
             case "BtnShopBack":
-                Debug.Log( "Back" );
+                SoundManager.Instance.PlaySE( 3 );
                 UIManager.Instance.Back( );
                 break;
         }

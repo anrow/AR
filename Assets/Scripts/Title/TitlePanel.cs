@@ -11,4 +11,10 @@ public class TitlePanel : MonoBehaviour {
 	public void OnBtnTitleTouchClick( ) {
         GameManager.Instance.SetMainMenuPanel( );
     }
+    private void Start( ) {
+        //Invoke( "PlayBgm", 3f );
+    }
+    private void PlayBgm( ) {
+        SoundManager.Instance.PlayBGM( 0 );
+    } 
 }
