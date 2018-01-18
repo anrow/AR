@@ -32,9 +32,9 @@ public class OptionPanel : MonoBehaviour {
 	[SerializeField]
 	private Sprite ImageRedOff;
 	
-	private int m_BtnBgmCount = 0;
+	private static int m_BtnBgmCount = 1;
 	
-	private int m_BtnSeCount = 0;
+	private static int m_BtnSeCount = 1;
 	
 	private bool IsSwitchOn( int _TypeCount ) {
 		return _TypeCount % 2 == 0;
@@ -42,14 +42,17 @@ public class OptionPanel : MonoBehaviour {
 	
 	void Update( ) {
 		
-		BtnBgmOn.GetComponent<Image>().sprite = IsSwitchOn( m_BtnBgmCount ) ? ImageYellowOn : ImageRedOn;
+		BtnBgmOn.GetComponent<Image>().sprite = IsSwitchOn( m_BtnBgmCount ) ? ImageRedOn : ImageYellowOn;
 		
-		BtnBgmOff.GetComponent<Image>().sprite = IsSwitchOn( m_BtnBgmCount ) ? ImageRedOff : ImageYellowOff;
+		BtnBgmOff.GetComponent<Image>().sprite = IsSwitchOn( m_BtnBgmCount ) ? ImageYellowOff : ImageRedOff;
 		
-		BtnSeOn.GetComponent<Image>().sprite = IsSwitchOn( m_BtnSeCount ) ? ImageYellowOn : ImageRedOn;
+		BtnSeOn.GetComponent<Image>().sprite = IsSwitchOn( m_BtnSeCount ) ? ImageRedOn : ImageYellowOn;
 		
-		BtnSeOff.GetComponent<Image>().sprite = IsSwitchOn( m_BtnSeCount ) ? ImageRedOff : ImageYellowOff;
+		BtnSeOff.GetComponent<Image>().sprite = IsSwitchOn( m_BtnSeCount ) ? ImageYellowOff : ImageRedOff;
 		
+        SoundManager.Instance.StopBGM( IsSwitchOn( m_BtnBgmCount ) );
+        
+        SoundManager.Instance.StopSE( IsSwitchOn( m_BtnSeCount ) );
 	}
 	
 	private void CheckBtnSprite( int _Count, Sprite _SelfSprite, Sprite _TargetSprite ) {

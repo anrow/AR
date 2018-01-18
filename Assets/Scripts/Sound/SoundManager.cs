@@ -60,18 +60,17 @@ public class SoundManager : MonoBehaviour {
 			return;
 		}
 		// 同じBGMの場合は何もしない
-		/*if( m_BgmSource.clip == BGM[ index ] ){
+		if( m_BgmSource.clip == m_Bgm[ index ] ){
 			return;
-		}*/
-		//m_BgmSource.Stop( );
+		}
+		
 		m_BgmSource.clip = m_Bgm[ index ];
 		m_BgmSource.Play( );
 	}
 
 	// BGM停止
-	public void StopBGM( ){
-		m_BgmSource.Stop( );
-		m_BgmSource.clip = null;
+	public void StopBGM( bool _SwitchOn ){
+		m_BgmSource.volume = _SwitchOn ? 0 : 1; 
 	}
 
 	// ***** SE再生 *****
@@ -80,18 +79,13 @@ public class SoundManager : MonoBehaviour {
 		if( 0 > index || m_Se.Length <= index ){
 			return;
 		}
-		
-		/*if( m_SeSource.clip == SE[ index ] ){
-			return;
-		}*/
 		m_SeSource.clip = m_Se[ index ];
 		m_SeSource.Play( );
 	}
 
 	// SE停止
-	public void StopSE( ){
-		m_SeSource.Stop( );
-		m_SeSource.clip = null;
+	public void StopSE( bool _SwitchOn ){
+		m_SeSource.volume = _SwitchOn ? 0 : 1;
 	}
 
 }

@@ -22,9 +22,6 @@ public class MainMenuPanel : MonoBehaviour {
     [SerializeField]
     private Button BtnCharacterMiraN;
 	
-	[SerializeField]
-	private Button BtnContineue;
-
     public void OnBtnClicked( Button _Btn ) {
         switch( _Btn.name ) {
 			case "BtnTop":
@@ -61,14 +58,6 @@ public class MainMenuPanel : MonoBehaviour {
 				CharacterDialogue.Instance.TriggerDialogue();
 				break;
 				
-			case "BtnContinue":
-				SoundManager.Instance.PlaySE(1);
-				Animator[ ] AllCharacter_Anim = GetComponentsInChildren<Animator>();
-				for (int i = 0; i < AllCharacter_Anim.Length; i++)
-				{
-					AllCharacter_Anim[i].SetTrigger("Pressed");
-				}
-				break;
         }
     }
 }
