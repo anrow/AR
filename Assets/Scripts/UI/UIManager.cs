@@ -36,13 +36,11 @@ public class UIManager : MonoBehaviour {
 		m_CurrentPanelList = new List<GameObject>( );
 
 		GameObject Go_LogoPanel = GameObject.FindObjectOfType<LogoPanel> ().gameObject;
-		GameObject Go_ShopPanel = GameObject.FindObjectOfType<ShopPanel> ().gameObject;
 		GameObject Go_MainMenuPanel = GameObject.FindObjectOfType<MainMenuPanel> ().gameObject;
 		GameObject Go_OptionPanel = GameObject.FindObjectOfType<OptionPanel> ().gameObject;
 		GameObject Go_TitlePanel = GameObject.FindObjectOfType<TitlePanel> ().gameObject;
 
 		m_PanelList.Add( Go_LogoPanel );
-		m_PanelList.Add( Go_ShopPanel );
 		m_PanelList.Add( Go_MainMenuPanel );
 		m_PanelList.Add( Go_OptionPanel );
 		m_PanelList.Add( Go_TitlePanel );

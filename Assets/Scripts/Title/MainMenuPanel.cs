@@ -8,9 +8,6 @@ public class MainMenuPanel : MonoBehaviour {
     private Button BtnTop;
 
     [SerializeField]
-    private Button BtnShop;
-
-    [SerializeField]
     private Button BtnOption;
 
     [SerializeField]
@@ -24,26 +21,15 @@ public class MainMenuPanel : MonoBehaviour {
 
     [SerializeField]
     private Button BtnCharacterMiraN;
-
-    int BtnTopCount = 1;
-
-    private void Start( ) {
-    }
+	
+	[SerializeField]
+	private Button BtnContineue;
 
     public void OnBtnClicked( Button _Btn ) {
         switch( _Btn.name ) {
-            case "BtnTop" :
-				SoundManager.Instance.PlaySE( 5 );
-                BtnTopCount++;
-
-                BtnShop.gameObject.SetActive( BtnTopCount % 2 != 0 );
-                BtnOption.gameObject.SetActive( BtnTopCount % 2 != 0 );
-                BtnMainGame.gameObject.SetActive( BtnTopCount % 2 != 0 );
-                break;
-
-            case "BtnShop":
-                SoundManager.Instance.PlaySE( 5 );
-                GameManager.Instance.SetShopPanel( );
+			case "BtnTop":
+				SoundManager.Instance.PlaySE( 0 );
+				GameManager.Instance.SetTitlePanel( );
                 break;
 
             case "BtnOption":
@@ -52,7 +38,7 @@ public class MainMenuPanel : MonoBehaviour {
                 break;
 
 			case "BtnMainGame":
-				SoundManager.Instance.PlaySE (5);
+				SoundManager.Instance.PlaySE( 5 );
 
 				GameManager.Instance.LoadScene ("mainGame");
 
@@ -69,9 +55,19 @@ public class MainMenuPanel : MonoBehaviour {
 				TokuN_Anim.SetTrigger( "Pressed" );
                 break;
 			case "BtnCharacterMiraN":
-                SoundManager.Instance.PlaySE( 1 );
-				Animator MiraN_Anim = BtnCharacterMiraN.gameObject.GetComponent<Animator> ();
-				MiraN_Anim.SetTrigger ("Pressed");
+				SoundManager.Instance.PlaySE(1);
+				Animator MiraN_Anim = BtnCharacterMiraN.gameObject.GetComponent<Animator>();
+				MiraN_Anim.SetTrigger("Pressed");
+				CharacterDialogue.Instance.TriggerDialogue();
+				break;
+				
+			case "BtnContinue":
+				SoundManager.Instance.PlaySE(1);
+				Animator[ ] AllCharacter_Anim = GetComponentsInChildren<Animator>();
+				for (int i = 0; i < AllCharacter_Anim.Length; i++)
+				{
+					AllCharacter_Anim[i].SetTrigger("Pressed");
+				}
 				break;
         }
     }

@@ -41,14 +41,6 @@ public class SoundManager : MonoBehaviour {
 	private AudioClip[ ] m_Se;
 
 	void Awake( ){
-		/*foreach( Sound theSound in m_Sounds ) {
-			theSound.Source = gameObject.AddComponent<AudioSource>( );
-			theSound.Source.clip = theSound.Clip;
-			theSound.Source.volume = theSound.Volume;
-			theSound.Source.pitch = theSound.Pitch;
-			theSound.Source.loop = theSound.isLoop;
-		}*/
-
 		// 全てのAudioSourceコンポーネントを追加する
 
 		// BGM AudioSource
@@ -60,12 +52,7 @@ public class SoundManager : MonoBehaviour {
 		m_SeSource = gameObject.AddComponent<AudioSource>( );
 
 	}
-
-	/*public void Play( string _SoundName ) {
-		Sound theSound = Array.Find( m_Sounds, Sound => Sound.Name == _SoundName );
-		theSound.Source.Play( );
-	}*/
-
+	
 	// ***** BGM再生 *****
 	// BGM再生
 	public void PlayBGM( int index ){

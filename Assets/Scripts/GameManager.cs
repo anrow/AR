@@ -125,9 +125,19 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void SetTitlePanel( ) {
+		
+		if( m_CurrentGameState == GameState.MainMenu ) {
+			
+			m_UIManager.Back();
+			
+		} else {
+			
+			m_UIManager.Enter<TitlePanel>(false);
+		}
+		
 		m_CurrentGameState = GameState.Title;
-        m_UIManager.Enter<TitlePanel>( false );
-		SoundManager.Instance.PlayBGM (0);
+		
+		SoundManager.Instance.PlayBGM( 0 );
     }
 	public void SetMainMenuPanel( ) {
 		m_CurrentGameState = GameState.MainMenu;
@@ -136,9 +146,6 @@ public class GameManager : MonoBehaviour {
     }
     public void SetOptionPanel( ) {
         m_UIManager.Enter<OptionPanel>( true );
-    }
-    public void SetShopPanel( ) {
-        m_UIManager.Enter<ShopPanel>( false );
     }
 	public void SetPlayMethodPanel( ) {
 		m_UIManager.Enter<PlayMethodPanel>( false );
