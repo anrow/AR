@@ -11,8 +11,6 @@ public class DialogueSystem : MonoBehaviour {
 
 	private Queue<string> sentences;
 
-	private bool characterSelected = false;
-
 	// Use this for initialization
 	void Start () {
 		
@@ -21,8 +19,6 @@ public class DialogueSystem : MonoBehaviour {
 	}
 	
 	public void StartDialogue(Dialogue dialogue) {
-
-		characterSelected = true;
 
 		nameText.text = dialogue.name;
 
@@ -33,12 +29,9 @@ public class DialogueSystem : MonoBehaviour {
 			sentences.Enqueue(sentence);
 
 		}
-		
-		if(characterSelected) {
 
-			NextSentence();
-
-		}
+        NextSentence();
+        
 
 	}
 
@@ -78,6 +71,5 @@ public class DialogueSystem : MonoBehaviour {
 
 		Debug.Log("End of conversation.");
 
-		characterSelected = false;
 	}
 }

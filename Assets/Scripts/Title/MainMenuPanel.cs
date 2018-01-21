@@ -21,7 +21,14 @@ public class MainMenuPanel : MonoBehaviour {
 
     [SerializeField]
     private Button BtnCharacterMiraN;
-	
+
+    private DialogueSystem dialogueSystem;
+
+    void Start( ) {
+
+        dialogueSystem = FindObjectOfType<DialogueSystem>( );
+
+    }
     public void OnBtnClicked( Button _Btn ) {
         switch( _Btn.name ) {
 			case "BtnTop":
@@ -55,9 +62,32 @@ public class MainMenuPanel : MonoBehaviour {
 				SoundManager.Instance.PlaySE(1);
 				Animator MiraN_Anim = BtnCharacterMiraN.gameObject.GetComponent<Animator>();
 				MiraN_Anim.SetTrigger("Pressed");
-				CharacterDialogue.Instance.TriggerDialogue();
+				//CharacterDialogue.Instance.TriggerDialogue();
 				break;
-				
+            case "BtnContinue":
+                SoundManager.Instance.PlaySE( 1 );
+                if( dialogueSystem.nameText.text == "Fuku" ) {
+
+                    Animator anim = BtnCharacterFukuN.gameObject.GetComponent<Animator>( );
+
+                    anim.SetTrigger( "Pressed" );
+
+                }
+                if( dialogueSystem.nameText.text == "Toku" ) {
+
+                    Animator anim = BtnCharacterTokuN.gameObject.GetComponent<Animator>( );
+
+                    anim.SetTrigger( "Pressed" );
+
+                }
+                if( dialogueSystem.nameText.text == "Mira" ) {
+
+                    Animator anim = BtnCharacterMiraN.gameObject.GetComponent<Animator>( );
+
+                    anim.SetTrigger( "Pressed" );
+
+                }
+                break;
         }
     }
 }

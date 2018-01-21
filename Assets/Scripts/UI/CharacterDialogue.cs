@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterDialogue : MonoBehaviour {
 	
-	private static CharacterDialogue instance;
+	/*private static CharacterDialogue instance;
 	
 	public static CharacterDialogue Instance {
 		get {
@@ -15,7 +15,7 @@ public class CharacterDialogue : MonoBehaviour {
 			
 			return instance;
 		}
-	}
+	}*/
 	
 	public Dialogue dialogue;
 
