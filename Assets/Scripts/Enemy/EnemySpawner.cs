@@ -64,6 +64,10 @@ public class EnemySpawner : MonoBehaviour {
 		}
 	}
 
+	void Awake( ) {
+		this.enabled = false;
+	}
+
 	// Use this for initialization
 	void Start( ) {
 		

@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
         Logo,
         Title,
         MainMenu,
+		PlayMethod,
         MainGame,
         Clear,
         Result
@@ -85,22 +86,25 @@ public class GameManager : MonoBehaviour {
 		if (NowSceneName == "title") {
 			m_CurrentGameState = GameState.Logo;
 		} else if (NowSceneName == "mainGame") {
-			m_CurrentGameState = GameState.MainGame;
+			m_CurrentGameState = GameState.PlayMethod;
 		}
 
 		switch( m_CurrentGameState ) {
-		case GameState.Logo:
+			case GameState.Logo:
 				m_UIManager.TitleInit( );
-			break;
-		case GameState.Title:
+				break;
+			case GameState.Title:
 			
-			break;
-		case GameState.MainMenu:
+				break;
+			case GameState.MainMenu:
 			
-			break;
-		case GameState.MainGame:
-				m_UIManager.MainGameInit( );
-			break;
+				break;
+			case GameState.PlayMethod:
+				m_UIManager.MainGameInit ();
+
+				break;
+			case GameState.MainGame:
+				break;
 		}
     
 	}
@@ -108,6 +112,11 @@ public class GameManager : MonoBehaviour {
 		if( NowSceneName != SceneManager.GetActiveScene().name ) {
 			Start( );
         }
+		if (m_CurrentGameState == GameState.MainGame) {
+			FindObjectOfType<EnemySpawner> ().enabled = true;
+		} else {
+			FindObjectOfType<EnemySpawner> ().enabled = false;
+		}
 	}
 
 	public void SetGamePause( bool isPause ) { 
@@ -148,7 +157,13 @@ public class GameManager : MonoBehaviour {
         m_UIManager.Enter<OptionPanel>( true );
     }
 	public void SetPlayMethodPanel( ) {
+		m_CurrentGameState = GameState.PlayMethod;
 		m_UIManager.Enter<PlayMethodPanel>( false );
+	}
+
+	public void SetMainGamePanel( ) {
+		m_CurrentGameState = GameState.MainGame;
+		m_UIManager.Enter<MainGamePanel>( false );
 	}
 
 	public void LoadScene( string sceneName ) {

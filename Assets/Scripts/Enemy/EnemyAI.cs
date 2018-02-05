@@ -94,6 +94,7 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 	}
 	void OnTriggerExit( Collider other ) {
 		if ( other.tag == "EnemySpawner" ) {
+			Debug.Log ("Turn");
 			isTurn = !isTurn;
 		}
 	}

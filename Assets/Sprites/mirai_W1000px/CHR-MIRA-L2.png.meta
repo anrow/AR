@@ -1,9 +1,11 @@
 fileFormatVersion: 2
 guid: bec7b3d84f8c94bfc9e834ce4d474998
-timeCreated: 1505457873
+timeCreated: 1517820157
 licenseType: Pro
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: CHR-MIRA-L2_0
+    21300002: CHR-MIRA-L2_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -92,7 +94,33 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: CHR-MIRA-L2_0
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 14
+        width: 553
+        height: 577
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: CHR-MIRA-L2_1
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 480
+        width: 73
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
