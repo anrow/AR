@@ -9,7 +9,7 @@ public class DialogueSystem : MonoBehaviour {
 
 	public Text dialogueText;
 
-	private Queue<string> sentences;
+	public Queue<string> sentences;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +27,6 @@ public class DialogueSystem : MonoBehaviour {
 		foreach ( string sentence in dialogue.sentences ) {
 
 			sentences.Enqueue(sentence);
-
 		}
 
         NextSentence();
@@ -72,4 +71,5 @@ public class DialogueSystem : MonoBehaviour {
 		Debug.Log("End of conversation.");
 
 	}
+
 }
