@@ -18,6 +18,14 @@ public class EnemyManager : MonoBehaviour {
 
 	private const int MAX_COUNT = 10;
 
+    private int m_EnemyDownCount;
+
+    public int EnmeyDownCount {
+        get {
+            return m_EnemyDownCount;
+        }
+    }
+
 	void Start( ) {
 		
 		touchCro = GameObject.FindObjectOfType<touchControl>( );
@@ -31,13 +39,13 @@ public class EnemyManager : MonoBehaviour {
 
 		enemyAi = GameObject.FindObjectOfType<EnemyAI>( );
 
-		int m_Count = touchCro.enemyDownCount;
+		m_EnemyDownCount = touchCro.enemyDownCount;
 
-		if ( m_Count >= MAX_COUNT ) {
+		if ( m_EnemyDownCount >= MAX_COUNT ) {
 
-			m_Count = 0;
+			m_EnemyDownCount = 0;
 
-			touchCro.enemyDownCount = m_Count;
+			touchCro.enemyDownCount = m_EnemyDownCount;
 
 			RemoveAllEnemy( );
 

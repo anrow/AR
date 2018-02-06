@@ -49,6 +49,15 @@ public class GameManager : MonoBehaviour {
 
     private GameState m_CurrentGameState = GameState.Null;
 
+    public int GetEnemyDownCount( ) {
+        EnemyManager theEnemyManager = FindObjectOfType<EnemyManager>( );
+        return theEnemyManager.EnmeyDownCount;
+    }
+    public int GetCoinCount( ) {
+        EnemyManager theEnemyManager = FindObjectOfType<EnemyManager>( );
+        return theEnemyManager.EnmeyDownCount * 2;
+    }
+
     private void Awake( ) {
 
         if( m_UIManager == null ) {
@@ -112,11 +121,9 @@ public class GameManager : MonoBehaviour {
 		if( NowSceneName != SceneManager.GetActiveScene().name ) {
 			Start( );
         }
-		if (m_CurrentGameState == GameState.MainGame) {
+		if( m_CurrentGameState == GameState.MainGame ) {
 			FindObjectOfType<EnemySpawner> ().enabled = true;
-		} else {
-			FindObjectOfType<EnemySpawner> ().enabled = false;
-		}
+		} 
 	}
 
 	public void SetGamePause( bool isPause ) { 
@@ -169,4 +176,5 @@ public class GameManager : MonoBehaviour {
 	public void LoadScene( string sceneName ) {
         SceneManager.LoadScene( sceneName );
     }
+    
 }
