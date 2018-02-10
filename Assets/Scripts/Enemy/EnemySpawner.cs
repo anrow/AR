@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour {
 		enemyCount = 0;
 
 		StartCoroutine( Spawn( enemyCount ) );
-
+		
 	}
 	
 	// Update is called once per frame
@@ -114,7 +114,10 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
 	private void BossShow( ) {
-		Instantiate( BossPrefab, randomVector, Quaternion.identity );
+
+		Transform m_Cam = GameObject.FindGameObjectWithTag( "MainCamera" ).transform;
+
+		Instantiate( BossPrefab, Camera.main.transform.forward * 10, m_Cam.rotation );
 	}
 		
 }

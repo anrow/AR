@@ -49,7 +49,6 @@ public class EnemyManager : MonoBehaviour {
 
 			RemoveAllEnemy( );
 
-			Debug.Log( "clear" );
 		}
 	}
 		
@@ -57,7 +56,6 @@ public class EnemyManager : MonoBehaviour {
 		GameObject[ ] RemoveList = GameObject.FindGameObjectsWithTag( "Enemy" );
 		for ( int i = 0; i < RemoveList.Length; i++ ) {
 			Destroy( RemoveList[ i ].gameObject );
-			Debug.Log( i );
 		}
 	}
 
