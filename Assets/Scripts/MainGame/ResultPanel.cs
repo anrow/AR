@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResultPanel : MonoBehaviour {
     [SerializeField]
@@ -8,6 +9,10 @@ public class ResultPanel : MonoBehaviour {
 
     [SerializeField]
     private GameObject mGo_CoinCountPanel;
+
+    [SerializeField]
+    private Button BtnReturnToTitle;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -22,4 +27,9 @@ public class ResultPanel : MonoBehaviour {
         theEnemyCountDownView.Number = GameManager.Instance.GetEnemyDownCount( );
         theCoinCountDownView.Number = GameManager.Instance.GetCoinCount( );
 	}
+
+    public void OnBtnClicked( ) {
+        GameManager.Instance.LoadScene( "title" );
+        GameManager.Instance.SetLogoPanel( );
+    }
 }

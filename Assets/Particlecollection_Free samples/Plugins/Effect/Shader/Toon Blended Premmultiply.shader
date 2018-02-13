@@ -1,4 +1,6 @@
-﻿Shader "Effect/Toon Blended Premmultiply"
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Effect/Toon Blended Premmultiply"
 {
 	Properties
 	{
@@ -101,7 +103,7 @@
 			v2f vert (a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP,v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.vertexColor = v.vertexColor;
 
 

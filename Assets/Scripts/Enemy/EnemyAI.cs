@@ -27,6 +27,9 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 
 	private Rigidbody rb;
 
+    [SerializeField]
+    private GameObject mGo_ExplosionFx;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -65,7 +68,7 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 		}
 	}
 
-	public void Dead() {
+	public void Dead( ) {
 
 		isDead = true;
 
@@ -79,7 +82,9 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 
 		touchCro.target = null;
 
-		Destroy (gameObject, 2f );
+		Destroy( gameObject, 2f );
+
+        Instantiate( mGo_ExplosionFx, transform.position, Quaternion.identity );
 
 	}
 		
@@ -94,7 +99,6 @@ public class EnemyAI : MonoBehaviour, IPointerClickHandler{
 	}
 	void OnTriggerExit( Collider other ) {
 		if ( other.tag == "EnemySpawner" ) {
-			
 			isTurn = !isTurn;
 		}
 	}

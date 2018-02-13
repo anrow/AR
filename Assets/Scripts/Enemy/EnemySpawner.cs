@@ -16,8 +16,27 @@ public class EnemySpawner : MonoBehaviour {
 	[SerializeField]
 	public PowerCageController m_PowerCageController;
 
+    [SerializeField]
+    private EnemyManager theEnemyManager;
+
 	[SerializeField]
 	public int enemyCount;
+
+    [SerializeField]
+    private bool canBossShow = false;
+
+    public bool CanBossShow {
+        get { return canBossShow; }
+        set { canBossShow = value; }
+    }
+
+    [SerializeField]
+    private bool isBossShow = false;
+
+    public bool IsBossShow {
+        get { return isBossShow; }
+        set { isBossShow = value; }
+    }
 
 	private const int LEFT_SIZE = 0;
 	private const int RIGHT_SIZE = 1;
@@ -73,16 +92,20 @@ public class EnemySpawner : MonoBehaviour {
 		
 		enemyCount = 0;
 
+        theEnemyManager = FindObjectOfType<EnemyManager>( );
+
 		StartCoroutine( Spawn( enemyCount ) );
 		
+        canBossShow = true;
 	}
 	
 	// Update is called once per frame
 	void Update( ) {
-		
-		if ( m_PowerCageController.IsCageReday( ) ) {
-			Invoke( "BossShow", 3f );
-		}
+	    if( m_PowerCageController.IsCageReday( ) && canBossShow ) {
+            isBossShow = true;
+            BossShow( );
+            canBossShow = false;
+        }
 	}
 
 	private IEnumerator Spawn( int count ) {
@@ -114,10 +137,11 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
 	private void BossShow( ) {
-
+        
 		Transform m_Cam = GameObject.FindGameObjectWithTag( "MainCamera" ).transform;
 
 		Instantiate( BossPrefab, Camera.main.transform.forward * 10, m_Cam.rotation );
+       
 	}
 		
 }

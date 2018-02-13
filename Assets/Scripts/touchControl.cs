@@ -89,11 +89,10 @@ public class touchControl : MonoBehaviour {
 			if ( target == null ) {
 				return;
 			}
-			Debug.Log("AttackEnemy");
 			enemyDownCount++;
-			Debug.Log( "++" );
 			target.GetComponent<EnemyAI>( ).Dead( );
 			swipeLength = 0;
+          
 
 		}
 	}

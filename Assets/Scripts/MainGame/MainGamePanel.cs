@@ -20,7 +20,7 @@ public class MainGamePanel : MonoBehaviour {
 		UIManager.Instance.Enter<PausePanel>( true );
 	}
     private void Start( ) {
-
+        
     }
     private void Update( ) {
 

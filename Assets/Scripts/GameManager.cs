@@ -122,7 +122,11 @@ public class GameManager : MonoBehaviour {
 			Start( );
         }
 		if( m_CurrentGameState == GameState.MainGame ) {
+
 			FindObjectOfType<EnemySpawner> ().enabled = true;
+
+            EnemyManager theEnemyManager = FindObjectOfType<EnemyManager>( );
+
 		} 
 	}
 
@@ -171,8 +175,14 @@ public class GameManager : MonoBehaviour {
 	public void SetMainGamePanel( ) {
 		m_CurrentGameState = GameState.MainGame;
 		m_UIManager.Enter<MainGamePanel>( false );
+        SoundManager.Instance.PlayBGM( 2 );
 	}
-
+    public void SetResultPanel( ) {
+        m_UIManager.Enter<ResultPanel>( false );
+    }
+    public void SetClearPanel( ) {
+        m_UIManager.Enter<ClearPanel>( false );
+    }
 	public void LoadScene( string sceneName ) {
         SceneManager.LoadScene( sceneName );
     }
